@@ -1,14 +1,15 @@
-@import url("styles.css");
-.nav-bar {
+@import url("../styles.css");
+.header-bar {
     background-color: var(--orange-color);
     color: var(--white-color);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     height: 70px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.nav-bar-logo {
+.header-bar-logo {
     font-weight: bold;
     display: flex;
     flex-direction: row;
@@ -17,15 +18,19 @@
     padding: 1.5rem 0;
 }
 
-.nav-bar-options {
+.header-bar-options {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     margin: 0 1rem;
 }
 
-.nav-bar-options-item {
+.header-bar-options-item {
     margin: 0 1rem;
     padding: 1.5rem 0;
     cursor: pointer;
+}
+
+.header-bar-options-item:hover {
+    font-weight: bold;
 }

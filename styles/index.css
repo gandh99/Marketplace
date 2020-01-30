@@ -1,5 +1,6 @@
-@import url("nav-bar.css");
-@import url("search-bar.css");
+@import url("header/header-bar.css");
+@import url("header/search-bar.css");
+@import url("gallery/gallery.css");
 
 body, html {
     font-family: 'Open Sans', sans-serif;
