@@ -1,0 +1,8 @@
+:root {
+    /* Fonts */
+    --default-font: 'Open Sans', sans-serif !important;
+
+    /* Colours */
+    --orange-color: #ff6347;
+    --white-color: #ffffff;
+}

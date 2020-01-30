@@ -1,0 +1,31 @@
+@import url("styles.css");
+.nav-bar {
+    background-color: var(--orange-color);
+    color: var(--white-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 70px;
+    font-weight: bold;
+}
+
+.nav-bar-logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin: 0 1rem;
+    padding: 1.5rem 0;
+}
+
+.nav-bar-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: 0 1rem;
+}
+
+.nav-bar-options-item {
+    margin: 0 1rem;
+    padding: 1.5rem 0;
+    cursor: pointer;
+}
