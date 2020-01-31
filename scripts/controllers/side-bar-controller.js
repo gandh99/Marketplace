@@ -16,8 +16,6 @@ function transformNavIcon(x) {
 
 function openNav() {
     navIsOpen = true;
-
-    // Open the nav drawer
     document.getElementById("side-bar").style.width = "200px";
     document.getElementsByClassName("side-bar-options")[0].style.visibility = "visible";
     document.getElementById("nav-menu-container").style.backgroundColor = "transparent";
@@ -33,8 +31,6 @@ function closeNav() {
 }
 
 function hamburgerClose() {
-    // document.getElementById("nav-bar1").style.backgroundColor = "black";
-    // document.getElementById("nav-bar3").style.backgroundColor = "black";
 }
 
 function hamburgerOpen() {

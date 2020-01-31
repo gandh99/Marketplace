@@ -1,4 +1,36 @@
 @import url("../styles.css");
+#nav-menu-container {
+    display: inline-block;
+    cursor: pointer;
+    position: absolute;
+    border-radius: 5px;
+    padding: 0.2rem 0.5rem;
+    opacity: 0.7;
+    top: 15px;
+    left: 10px;
+    z-index: 2;
+    width: 30px;
+}
+
+#nav-bar1, #nav-bar2, #nav-bar3 {
+    height: 2.5px;
+    background-color: var(--primary-text-color);
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+#nav-bar1 {
+    width: 90%;
+}
+
+#nav-bar2 {
+    width: 80%;
+}
+
+#nav-bar3 {
+    width: 100%;
+}
+
 #header-bar {
     background-color: var(--primary-color);
     color: var(--primary-text-color);
@@ -18,8 +50,13 @@
     padding: 1.1rem 0;
 }
 
+.header-bar-logo a {
+    text-decoration: none;
+    color: var(--primary-text-color);
+}
+
 .header-bar-options {
-    visibility: hidden;
+    visibility: visible;
 }
 
 .header-bar-options-item {

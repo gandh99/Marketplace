@@ -1,24 +1,4 @@
 @import url("../styles.css");
-#nav-menu-container {
-    display: inline-block;
-    cursor: pointer;
-    position: absolute;
-    border-radius: 5px;
-    padding: 0.2rem 0.5rem;
-    opacity: 0.7;
-    top: 15px;
-    left: 10px;
-    z-index: 2;
-    width: 30px;
-}
-
-#nav-bar1, #nav-bar2, #nav-bar3 {
-    width: 100%;
-    height: 2.5px;
-    background-color: var(--primary-text-color);
-    margin: 6px 0;
-    transition: 0.4s;
-}
 
 #side-bar {
     width: 0%;

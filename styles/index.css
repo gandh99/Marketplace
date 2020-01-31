@@ -2,6 +2,7 @@
 @import url("header/search-bar.css");
 @import url("gallery/gallery.css");
 @import url("side-nav/side-bar.css");
+@import url("dropdown/dropdown.css");
 
 body, html {
     font-family: 'Open Sans', sans-serif;
