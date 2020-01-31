@@ -11,24 +11,39 @@
 </head>
 
 <body>
-    <nav class="header-bar">
+    <nav id="header-bar">
+        <span id="nav-menu-container">
+            <div id="nav-bar1"></div>
+            <div id="nav-bar2"></div>
+            <div id="nav-bar3"></div>
+        </span>
         <div class="header-bar-logo">
             <div class="logo">Marketplace</div>
         </div>
-        <div class="search-container">
+        <!-- <div class="search-container">
             <input type="text" class="searchTerm" placeholder="Search...">
             <button type="submit" class="searchButton">
                 <i class="fa fa-search"></i>
             </button>
-        </div>
+        </div> -->
         <div class="header-bar-options">
             <span class="header-bar-options-item">Sign up</span>
             <span class="header-bar-options-item">Login</span>
         </div>
     </nav>
+    <nav id="side-bar">
+        <div class="hamburger-menu"></div>
+        <div class="side-bar-options">
+            <div class="side-bar-options-item">Home</div>
+            <div class="side-bar-options-item">Sign up</div>
+            <div class="side-bar-options-item">Login</div>
+        </div>
+    </nav>
     <div class="gallery-container">
 
     </div>
+
+    <script src="scripts/index.js" type="module"></script>
 </body>
 
 </html>

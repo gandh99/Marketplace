@@ -1,7 +1,7 @@
 @import url("../styles.css");
-.header-bar {
-    background-color: var(--orange-color);
-    color: var(--white-color);
+#header-bar {
+    background-color: var(--primary-color);
+    color: var(--primary-text-color);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -11,26 +11,36 @@
 
 .header-bar-logo {
     font-weight: bold;
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    margin: 0 1rem;
-    padding: 1.5rem 0;
+    font-size: 1.4rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 4rem;
+    padding: 1.1rem 0;
 }
 
 .header-bar-options {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    margin: 0 1rem;
+    visibility: hidden;
 }
 
 .header-bar-options-item {
-    margin: 0 1rem;
-    padding: 1.5rem 0;
-    cursor: pointer;
 }
 
 .header-bar-options-item:hover {
     font-weight: bold;
+}
+
+@media screen and (min-width: 700px) {
+    .header-bar-options {
+        visibility: visible;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin: 0 1rem;
+    }
+
+    .header-bar-options-item {
+        margin: 0 1rem;
+        padding: 1.5rem 0;
+        cursor: pointer;
+    }
 }
