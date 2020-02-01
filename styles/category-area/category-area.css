@@ -1,0 +1,31 @@
+@import url("../styles.css");
+
+.category-title {
+    margin: 3rem;
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.category-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    margin: 2rem;
+}
+
+.category-item {
+    margin: 1rem;
+    cursor: pointer;
+}
+
+.category-item img{
+    height: 50px;
+    width: 50px;
+    display: block;
+    margin: 0 auto;
+}
+
+.category-item-title {
+    text-align: center;
+    padding: 1rem;
+}
