@@ -10,6 +10,7 @@
 }
 
 .side-bar-options {
+    width: 150px;
     visibility: hidden;
 }
 

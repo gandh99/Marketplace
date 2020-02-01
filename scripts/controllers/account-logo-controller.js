@@ -1,26 +1,26 @@
-let navIsOpen = false;
+let accountMenuIsOpen = false;
 
-function openCloseNav(x) {
-    if (navIsOpen) {
-        closeNav();
+function openCloseAccountMenu(x) {
+    if (accountMenuIsOpen) {
+        closeAccountMenu();
     } else {
-        openNav();
+        openAccountMenu();
     }
 }
 
-function openNav() {
-    navIsOpen = true;
+function openAccountMenu() {
+    accountMenuIsOpen = true;
     document.getElementsByClassName("dropdown-content")[0].style.display = "block";
 }
 
-function closeNav() {
-    navIsOpen = false;
+function closeAccountMenu() {
+    accountMenuIsOpen = false;
     document.getElementsByClassName("dropdown-content")[0].style.display = "none";
 }
 
 let accountPicture = document.getElementById("account-picture");
 accountPicture.addEventListener("click", () => {
-    openCloseNav(accountPicture);
+    openCloseAccountMenu(accountPicture);
 });
 
 // When the nav drawer is open and the user clicks outside the drawer, the drawer will close
@@ -30,7 +30,7 @@ document.addEventListener('click', function (event) {
     var isClickInaccountPicture = accountPicture.contains(event.target);
     var isClickIndropdownContent = dropdownContent.contains(event.target);
 
-    if (navIsOpen && !isClickInaccountPicture && !isClickIndropdownContent) {
-        openCloseNav(dropdownContent);
+    if (accountMenuIsOpen && !isClickInaccountPicture && !isClickIndropdownContent) {
+        openCloseAccountMenu(dropdownContent);
     }
 });
