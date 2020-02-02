@@ -1,19 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../styles/index.css">
+    <link rel="stylesheet" href="../../styles/authentication/login.css">
     <title>Marketplace | Login</title>
 </head>
+
 <body>
     <div id="header-area"></div>
     <div id="sidebar-area"></div>
+
+    <div id="login-area">
+        <div id="login-area-header">Welcome Back</div>
+        <div class="login-credentials-area">
+            <div class="login-credentials"><input type="text" placeholder="Username" maxlength="10"></div>
+            <div class="login-credentials"><input type="password" placeholder="Password" maxlength="20"></div>
+            <button id="login-button">Login</button>
+        </div>
+        <div id="utility-area">
+            <div id="forgot-password-area"><a href="#">Forgot password?</a></div>
+            <div id="register-area">New to Marketplace? <span><a href="register.html">Join now</a></span></div>
+        </div>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../../scripts/html-loader/load-header.js" type=""></script>
     <script src="../../scripts/html-loader/load-sidebar.js" type=""></script>
 </body>
+
 </html>

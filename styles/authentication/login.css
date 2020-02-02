@@ -1,0 +1,62 @@
+@import url("../styles.css");
+#login-area {
+    margin: 3rem 1.5rem;
+    padding: 30px;
+}
+
+#login-area-header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.login-credentials-area {
+    margin: 2rem 0;
+}
+
+.login-credentials {
+    display: block;
+    margin: 1rem auto;
+    padding: 0.8rem 0;
+    border: solid 1px lightgray;
+}
+
+.login-credentials input {
+    border: none;
+    margin: 0 1rem;
+}
+
+#login-button {
+    font-weight: bold;
+    display: block;
+    margin: 2rem auto;
+    padding: 1rem 0;
+    width: 100%;
+    border: solid 1px gray;
+    border-radius: 0.2rem;
+    color: var(--primary-text-color);
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+}
+
+#utility-area {
+    margin: 4rem 0;
+    text-align: center;
+}
+
+#forgot-password-area a, #register-area a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+#register-area {
+    margin: 1rem;
+}
+
+@media screen and (min-width: 700px) {
+    #login-area {
+        margin: 3rem 10rem;
+        padding: 30px;
+    }
+}
