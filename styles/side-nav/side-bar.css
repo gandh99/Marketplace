@@ -16,6 +16,7 @@
 
 .side-bar-options-item {
     padding: 0.5rem 1rem;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 700px) {

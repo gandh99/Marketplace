@@ -40,6 +40,11 @@
     transition: 0.5s;
 }
 
+.dropdown-item a {
+    text-decoration: none;
+    color: black;
+}
+
 #dropdown-username {
     font-weight: bold;
     font-style: italic;

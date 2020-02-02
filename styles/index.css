@@ -2,7 +2,7 @@
 @import url("header/search-bar.css");
 @import url("gallery/gallery.css");
 @import url("side-nav/side-bar.css");
-@import url("dropdown/dropdown.css");
+@import url("dropdown/account-menu.css");
 @import url("category-area/category-area.css");
 
 body, html {
