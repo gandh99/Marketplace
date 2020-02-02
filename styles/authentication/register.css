@@ -1,33 +1,33 @@
 @import url("../styles.css");
-#login-area {
+#register-area {
     margin: 3rem 1.5rem;
     padding: 30px;
 }
 
-#login-area-header {
+#register-area-header {
     text-align: center;
     font-weight: bold;
     font-size: 1.2rem;
 }
 
-.login-credentials-area {
+.register-credentials-area {
     margin: 2rem 0;
 }
 
-.login-credentials {
+.register-credentials {
     display: block;
     margin: 1rem auto;
     padding: 0.8rem 0;
     border: solid 1px lightgray;
 }
 
-.login-credentials input {
+.register-credentials input {
     border: none;
     margin: 0 1rem;
     width: 80%;
 }
 
-#login-button {
+#register-button {
     font-weight: bold;
     display: block;
     margin: 2rem auto;
@@ -57,7 +57,7 @@
 }
 
 @media screen and (min-width: 700px) {
-    #login-area {
+    #register-area {
         margin: 3rem 10rem;
         padding: 30px;
     }
