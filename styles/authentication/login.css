@@ -24,6 +24,7 @@
 .login-credentials input {
     border: none;
     margin: 0 1rem;
+    width: 80%;
 }
 
 #login-button {
