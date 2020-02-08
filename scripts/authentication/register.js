@@ -40,6 +40,7 @@ function sendInputData(inputData) {
     xhr.onload = () => {
         // const data = JSON.parse(xhr.response);
         // console.log(data);
+        console.log(xhr.response);
     };
     xhr.send(JSON.stringify(inputData));
 }
