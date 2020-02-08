@@ -10,6 +10,40 @@ function showErrors(errors) {
     }
 }
 
+function removeErrors() {
+    const inputErrorsArea = document.getElementsByClassName('input-errors-area')[0];
+    while (inputErrorsArea.firstChild) {
+        inputErrorsArea.removeChild(inputErrorsArea.firstChild);
+    };
+}
+
+function validateInput(inputData) {
+    let errors = [];
+    
+    if (inputData['username'].length < 3) {
+        errors.push('Username must have at least 3 characters.');
+    }
+    if (inputData['password1'].length < 6) {
+        errors.push('Password must have at least 6 characters.');
+    }
+    if (inputData['password1'] !== inputData['password2']) {
+        errors.push('Passwords must match');
+    }
+
+    return errors;
+}
+
+function sendInputData(inputData) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', registerUrl);
+    xhr.setRequestHeader('content-type', 'application/json');
+    xhr.onload = () => {
+        // const data = JSON.parse(xhr.response);
+        // console.log(data);
+    };
+    xhr.send(JSON.stringify(inputData));
+}
+
 const registerButton = document.getElementById("register-button");
 registerButton.addEventListener("click", () => {
     // Get user's input data
@@ -19,27 +53,14 @@ registerButton.addEventListener("click", () => {
         password2: document.getElementById('password2').value
     };
 
-    // Basic validation of input data
-    const inputErrorsArea = document.getElementsByClassName('input-errors-area')[0];
-    while (inputErrorsArea.firstChild) {
-        inputErrorsArea.removeChild(inputErrorsArea.firstChild);
-    };
-    let errors = [];
-    if (!inputData['username'] || inputData['username'].length < 3) {
-        errors.push('Username must have at least 3 characters.');
-    }
+    // Client-side validation of input data
+    removeErrors();
+    let errors = validateInput(inputData);
     if (errors.length != 0) {
         showErrors(errors);
         return;
     }
 
     // Send input data to server
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', registerUrl);
-    xhr.setRequestHeader('content-type', 'application/json');
-    xhr.onload = () => {
-        // const data = JSON.parse(xhr.response);
-        // console.log(data);
-    };
-    xhr.send(JSON.stringify(inputData));
+    sendInputData(inputData);
 });
