@@ -7,7 +7,9 @@ const passport = require("passport");
 
 
 // Register page
-router.get("/register", (req, res) => {
+router.post("/register", (req, res) => {
+    console.log(req.body);
+    const { username, password1, password2 } = req.body;
     res.send({
         id: 1,
         username: "lmao"

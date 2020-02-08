@@ -17,6 +17,18 @@
     margin: 1rem 0;
 }
 
+.input-errors-area {
+    margin: 2rem 0;
+}
+
+.input-error {
+    background-color: antiquewhite;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
 .register-credentials-area {
     margin: 2rem 0;
 }
