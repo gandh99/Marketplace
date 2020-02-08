@@ -13,15 +13,31 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// MySQL
-let connection = mysql.createConnection({
+// Connect to MySQL
+let db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: ''
+    password: '',
+    database: 'marketplace'
 });
-connection.connect((err) => {
+db.connect((err) => {
     if (err) throw err;
     console.log('Connected to MySQL database.');
+});
+
+// Create MySQL database
+app.get('/createdb', (req, res) => {
+    let sql = 'CREATE DATABASE marketplace';
+    db.query(sql, (err, result) => {
+        if (err) throw err;
+        console.log(result);
+        res.send('Databased created.');
+    });
+});
+
+// Create table
+app.get('/createuserstable', (req, res) => {
+    
 });
 
 // Routes
