@@ -19,7 +19,7 @@ function removeErrors() {
 
 function validateInput(inputData) {
     let errors = [];
-    
+
     if (inputData['username'].length < 3) {
         errors.push('Username must have at least 3 characters.');
     }
@@ -34,15 +34,19 @@ function validateInput(inputData) {
 }
 
 function sendInputData(inputData) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', registerUrl);
-    xhr.setRequestHeader('content-type', 'application/json');
-    xhr.onload = () => {
-        // const data = JSON.parse(xhr.response);
-        // console.log(data);
-        console.log(xhr.response);
-    };
-    xhr.send(JSON.stringify(inputData));
+    const promise = new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', registerUrl);
+        xhr.setRequestHeader('content-type', 'application/json');
+        xhr.onload = () => {
+            // const data = JSON.parse(xhr.response);
+            // console.log(data);
+            resolve(xhr.response);
+        };
+        xhr.send(JSON.stringify(inputData));
+    });
+
+    return promise;
 }
 
 const registerButton = document.getElementById("register-button");
@@ -63,5 +67,10 @@ registerButton.addEventListener("click", () => {
     }
 
     // Send input data to server
-    sendInputData(inputData);
+    sendInputData(inputData)
+        .then(responseData => {
+            console.log(responseData);
+        }).catch(err => {
+            console.log(err);
+        });
 });
