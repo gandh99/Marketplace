@@ -12,6 +12,7 @@ module.exports.insertUser = function (username, password, done) {
                 done('Username already exists.');
                 resolve(false);
             }
+            resolve(true);
         });
     }).then((shouldInsertUser) => {
         if (!shouldInsertUser) return;
@@ -20,7 +21,7 @@ module.exports.insertUser = function (username, password, done) {
         let insertSql = 'INSERT INTO users SET ?';
         db.get().query(insertSql, user, (err, result) => {
             if (err) throw err;
-            done(result.affectedRows);
+            done('');   // could also be result.affectedRows
         });
     }).catch((err) => {
         console.log(err);

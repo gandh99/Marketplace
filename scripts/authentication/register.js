@@ -40,7 +40,6 @@ function sendInputData(inputData) {
         xhr.setRequestHeader('content-type', 'application/json');
         xhr.onload = () => {
             // const data = JSON.parse(xhr.response);
-            // console.log(data);
             resolve(xhr.response);
         };
         xhr.send(JSON.stringify(inputData));
@@ -69,7 +68,9 @@ registerButton.addEventListener("click", () => {
     // Send input data to server
     sendInputData(inputData)
         .then(responseData => {
-            console.log(responseData);
+            if (responseData !== '') {
+                showErrors([responseData]);
+            }
         }).catch(err => {
             console.log(err);
         });
