@@ -27,7 +27,7 @@ function validateInput(inputData) {
         errors.push('Password must have at least 6 characters.');
     }
     if (inputData['password1'] !== inputData['password2']) {
-        errors.push('Passwords must match');
+        errors.push('Passwords must match.');
     }
 
     return errors;
