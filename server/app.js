@@ -1,6 +1,13 @@
 const express = require("express");
 const app = express();
 const mysql = require('mysql');
+const db = require('./db.js');
+
+// Connect to database
+db.connect(db.MODE_TEST, (err) => {
+    if (err) throw err;
+    console.log("Connected to database...");
+})
 
 // Enable CORS
 app.use((req, res, next) => {
