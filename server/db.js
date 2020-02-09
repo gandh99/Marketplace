@@ -1,3 +1,4 @@
+require('dotenv').config();
 const mysql = require('mysql');
 
 var PRODUCTION_DB = 'app_prod_database'
@@ -14,8 +15,8 @@ var state = {
 exports.connect = function(mode, done) {
   state.pool = mysql.createPool({
     host: 'localhost',
-    user: 'root',
-    password: '',
+    user: process.env.DATABASE_USERNAME,
+    password: process.env.DATABASE_PASSWORD,
     database: mode === exports.MODE_PRODUCTION ? PRODUCTION_DB : TEST_DB
   })
 
