@@ -33,6 +33,15 @@ function validateInput(inputData) {
     return errors;
 }
 
+function showSuccessMessage() {
+    const inputErrorsArea = document.getElementsByClassName('input-errors-area')[0];
+    let successMessage = document.createElement('div');
+    successMessage.className = 'success-message';
+    successMessage.innerHTML =
+        'Registration successful. Please click <a href="/html/authentication/login.html">here</a> to login.';
+    inputErrorsArea.appendChild(successMessage);
+}
+
 function sendInputData(inputData) {
     const promise = new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
@@ -70,6 +79,9 @@ registerButton.addEventListener("click", () => {
         .then(responseData => {
             if (responseData !== '') {
                 showErrors([responseData]);
+            } else {
+                removeErrors();
+                showSuccessMessage();
             }
         }).catch(err => {
             console.log(err);
