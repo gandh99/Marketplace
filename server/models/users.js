@@ -1,4 +1,5 @@
 const db = require('../db');
+const bcrypt = require("bcryptjs");
 
 module.exports.insertUser = function (username, password, done) {
     let user = { username: username, password: password };
@@ -17,12 +18,20 @@ module.exports.insertUser = function (username, password, done) {
     }).then((shouldInsertUser) => {
         if (!shouldInsertUser) return;
 
-        // Insert user if it does not already exist
-        let insertSql = 'INSERT INTO users SET ?';
-        db.get().query(insertSql, user, (err, result) => {
+        // Hash password
+        bcrypt.genSalt(10, (err, salt) => bcrypt.hash(user.password, salt, (err, hash) => {
             if (err) throw err;
-            done('');   // could also be result.affectedRows
-        });
+
+            // Set password to hash
+            user.password = hash;
+
+            // Insert user if it does not already exist
+            let insertSql = 'INSERT INTO users SET ?';
+            db.get().query(insertSql, user, (err, result) => {
+                if (err) throw err;
+                done('');   // could also be result.affectedRows
+            });
+        }));
     }).catch((err) => {
         console.log(err);
     });
