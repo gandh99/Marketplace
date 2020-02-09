@@ -1,7 +1,21 @@
 const express = require("express");
 const app = express();
-const mysql = require('mysql');
 const db = require('./db.js');
+const session = require("express-session");
+const passport = require("passport"); 
+
+// Express session
+app.use(session({
+    // secret: process.env.SESSION_SECRET
+    secret: 'HELLO',
+    resave: false,
+    saveUninitialized: false
+}));
+
+// Passport config
+require("./config/passport")(passport);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Connect to database
 db.connect(db.MODE_TEST, (err) => {

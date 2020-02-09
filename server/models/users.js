@@ -37,9 +37,25 @@ module.exports.registerUser = function (username, password, done) {
     });
 }
 
-module.exports.loginUser = function (username, password, done) {
-    let user = { username, password };
+module.exports.getUser = function (username, done) {
+    let user = {};
+    let sql = 'SELECT * FROM users WHERE username = ? LIMIT 1';
+    db.get().query(sql, username, (err, result) => {
+        if (err) throw err;
+        done(result[0]);
+    });
+}
 
+module.exports.getUserById = function (id) {
+    let sql = 'SELECT * FROM users WHERE id = ? LIMIT 1';
+    db.get().query(sql, id, (err, result) => {
+        if (err) throw err;
+        done(result[0]);
+    });
+}
+
+// Will be redundant when passport is working
+module.exports.loginUser = function (username, password, done) {
     let loginSql = 'SELECT * FROM users WHERE username = ? AND password = ?';
     db.get().query(loginSql, [username, password], (err, result) => {
         if (err) throw err;
