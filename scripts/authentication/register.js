@@ -1,4 +1,36 @@
-const registerUrl = "http://localhost:5000/users/register";
+import { registerUrl } from '../routes.js';
+
+const registerButton = document.getElementById("register-button");
+registerButton.addEventListener("click", () => {
+    // Get user's input data
+    const inputData = {
+        username: document.getElementById('username').value,
+        password1: document.getElementById('password1').value,
+        password2: document.getElementById('password2').value
+    };
+
+    // Client-side validation of input data
+    removeErrors();
+    let errors = validateInput(inputData);
+    if (errors.length != 0) {
+        showErrors(errors);
+        return;
+    }
+
+    // Send input data to server
+    sendInputData(inputData)
+        .then(responseData => {
+            if (responseData !== '') {
+                showErrors([responseData]);
+            } else {
+                removeErrors();
+                showSuccessMessage();
+                clearForm();
+            }
+        }).catch(err => {
+            console.log(err);
+        });
+});
 
 function showErrors(errors) {
     const inputErrorsArea = document.getElementsByClassName('input-errors-area')[0];
@@ -62,35 +94,3 @@ function sendInputData(inputData) {
 
     return promise;
 }
-
-const registerButton = document.getElementById("register-button");
-registerButton.addEventListener("click", () => {
-    // Get user's input data
-    const inputData = {
-        username: document.getElementById('username').value,
-        password1: document.getElementById('password1').value,
-        password2: document.getElementById('password2').value
-    };
-
-    // Client-side validation of input data
-    removeErrors();
-    let errors = validateInput(inputData);
-    if (errors.length != 0) {
-        showErrors(errors);
-        return;
-    }
-
-    // Send input data to server
-    sendInputData(inputData)
-        .then(responseData => {
-            if (responseData !== '') {
-                showErrors([responseData]);
-            } else {
-                removeErrors();
-                showSuccessMessage();
-                clearForm();
-            }
-        }).catch(err => {
-            console.log(err);
-        });
-});
