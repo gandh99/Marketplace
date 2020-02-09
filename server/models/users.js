@@ -1,7 +1,7 @@
 const db = require('../db');
 const bcrypt = require("bcryptjs");
 
-module.exports.insertUser = function (username, password, done) {
+module.exports.registerUser = function (username, password, done) {
     let user = { username: username, password: password };
 
     new Promise((resolve, reject) => {
@@ -34,5 +34,19 @@ module.exports.insertUser = function (username, password, done) {
         }));
     }).catch((err) => {
         console.log(err);
+    });
+}
+
+module.exports.loginUser = function (username, password, done) {
+    let user = { username, password };
+
+    let loginSql = 'SELECT * FROM users WHERE username = ? AND password = ?';
+    db.get().query(loginSql, [username, password], (err, result) => {
+        if (err) throw err;
+        if (result.length <= 0) {
+            done('Invalid username or password.');
+        } else {
+            done('');
+        }
     });
 }

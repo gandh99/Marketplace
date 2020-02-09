@@ -34,7 +34,7 @@ registerButton.addEventListener("click", () => {
 
 function showErrors(errors) {
     const inputErrorsArea = document.getElementsByClassName('input-errors-area')[0];
-    for (error of errors) {
+    for (let error of errors) {
         let inputError = document.createElement('div');
         inputError.className = 'input-error';
         inputError.textContent = error;
