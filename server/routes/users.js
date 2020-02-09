@@ -11,7 +11,7 @@ router.post('/login', (req, res, done) => {
         if (!user) {
             res.status(401).send('Invalid username/password');
         } else {
-            const accessToken = jwt.sign(user.id, 'SECRET');   //use env instead of SECRET later on 
+            const accessToken = jwt.sign(user.id, process.env.ACCESS_TOKEN_SECRET); 
             res.status(200).send(accessToken);
         }
     })(req, res, done);
