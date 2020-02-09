@@ -1,4 +1,5 @@
 import { loginUrl } from '../routes.js';
+import { saveToken, getToken } from './jwt.js';
 
 const loginButton = document.getElementById("login-button");
 loginButton.addEventListener("click", () => {
@@ -25,6 +26,7 @@ loginButton.addEventListener("click", () => {
                 removeErrors();
                 showSuccessMessage();
                 clearForm();
+                saveToken(response.data);
                 // window.location.href = '../../index.html';
             }
         }).catch(err => {
