@@ -15,7 +15,7 @@
 }
 
 .input-error {
-    background-color: var(--alert-warning-color);
+    background-color: var(--alert-error-color);
     border-radius: 10px;
     font-size: 0.8rem;
     padding: 1rem;
