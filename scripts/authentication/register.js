@@ -42,6 +42,12 @@ function showSuccessMessage() {
     inputErrorsArea.appendChild(successMessage);
 }
 
+function clearForm() {
+    document.getElementById('username').value = '';
+    document.getElementById('password1').value = '';
+    document.getElementById('password2').value = '';
+}
+
 function sendInputData(inputData) {
     const promise = new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
@@ -82,6 +88,7 @@ registerButton.addEventListener("click", () => {
             } else {
                 removeErrors();
                 showSuccessMessage();
+                clearForm();
             }
         }).catch(err => {
             console.log(err);
