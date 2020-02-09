@@ -2,14 +2,18 @@ const express = require("express");
 const app = express();
 const db = require('./db.js');
 const session = require("express-session");
-const passport = require("passport"); 
+const passport = require("passport");
 
 // Express session
 app.use(session({
     // secret: process.env.SESSION_SECRET
+    key: 'user_sid',
     secret: 'HELLO',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: true,
+    cookie: {
+        expires: 60000,
+    }
 }));
 
 // Passport config

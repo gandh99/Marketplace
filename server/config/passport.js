@@ -7,7 +7,14 @@ function initialize(passport) {
         // Get user in the form of an object
         let user;
         sql.getUser(username, (returnedUser) => {
+            // Return if username was wrong (hence user does not exist)
+            if (!returnedUser) {
+                return done(null, false);
+            }
+            
             user = returnedUser;
+
+            // Compare passwords if username exists
             bcrypt.compare(password, user.password, (err, isMatch) => {
                 if (err) throw err;
                 if (isMatch) {

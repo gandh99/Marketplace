@@ -5,11 +5,6 @@ const passport = require('passport');
 
 // Login page
 router.post('/login', (req, res, done) => {
-    // const { username, password } = req.body;
-    // sql.loginUser(username, password, function done(result) {
-    //     res.status(200).send(result);
-    // });
-
     passport.authenticate('local', (err, user, info) => {
         if (err) throw err;
         if (!user) {
