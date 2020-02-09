@@ -18,10 +18,10 @@ loginButton.addEventListener("click", () => {
 
     // Send input data to server
     sendInputData(inputData)
-        .then(responseData => {
-            if (responseData !== '') {
-                showErrors([responseData]);
-            } else {
+        .then(response => {
+            if (response.status == 401) {
+                showErrors([response.data]);
+            } else if (response.status == 200) {
                 removeErrors();
                 showSuccessMessage();
                 clearForm();
@@ -82,7 +82,7 @@ function sendInputData(inputData) {
         xhr.open('POST', loginUrl);
         xhr.setRequestHeader('content-type', 'application/json');
         xhr.onload = () => {
-            resolve(xhr.response);
+            resolve({status: xhr.status, data: xhr.response});
         };
         xhr.send(JSON.stringify(inputData));
     });
