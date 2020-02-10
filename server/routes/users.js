@@ -11,7 +11,7 @@ function authenticateToken(req, res, done) {
     if (!token) return res.sendStatus(401);
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.sendStatus(403);
-        req.user = user;
+        req.user = user.user;   // user.user because we sign jwt with {user} instead of JSON.stringify(user) ......
         done();
     });
 }
@@ -28,7 +28,7 @@ router.post('/login', (req, res, done) => {
         if (!user) {
             res.status(401).send('Invalid username/password');
         } else {
-            const accessToken = jwt.sign(JSON.stringify(user), process.env.ACCESS_TOKEN_SECRET);
+            const accessToken = jwt.sign({user}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '0.25h' });
             res.status(200).send(accessToken);
         }
     })(req, res, done);

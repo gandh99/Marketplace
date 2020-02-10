@@ -27,7 +27,7 @@ loginButton.addEventListener("click", () => {
                 showSuccessMessage();
                 clearForm();
                 saveToken(response.data);
-                // window.location.href = '../../index.html';
+                window.location.href = '../../index.html';
             }
         }).catch(err => {
             console.log(err);
