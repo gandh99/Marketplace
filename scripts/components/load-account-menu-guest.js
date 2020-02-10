@@ -1,1 +1,0 @@
-$("#account-menu-area").load("../../html/components/account-menu-guest.html");
