@@ -50,7 +50,7 @@
     width: 100%;
 }
 
-#dropdown-username {
+#dropdown-username, #dropdown-status {
     font-weight: bold;
     font-style: italic;
 }

@@ -1,5 +1,11 @@
 let accountMenuIsOpen = false;
 
+// If the account menu is account-menu-user, then load the username
+let dropdownUsername = document.getElementById('dropdown-username');
+if (dropdownUsername) {
+    dropdownUsername.innerHTML = sessionStorage.getItem('username');
+}
+
 function openCloseAccountMenu(x) {
     if (accountMenuIsOpen) {
         closeAccountMenu();
