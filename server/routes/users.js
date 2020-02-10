@@ -21,6 +21,10 @@ router.post('/login', (req, res, done) => {
 // Register page
 router.post("/register", (req, res) => {
     const { username, password1, password2 } = req.body;
+    if (!username || !password1 || !password2) {
+        res.status(400).send('Missing input fields.');
+        return;
+    }
     sql.registerUser(username, password1, function done(result) {
         res.status(200).send(result);
     });
