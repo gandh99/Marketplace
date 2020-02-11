@@ -11,6 +11,7 @@ A simple e-commerce website for users to buy and sell their products.
   - NodeJS run-time for the server
   - ExpressJS framework for handling routing requests and building the API endpoints
   - MySQL for database storage of user and item data
+  - Bcrypt for salting and hashing user passwords
   - PassportJS for handling user authentication
   - Javascript Web Token (JWT) for maintaining user sessions
 
