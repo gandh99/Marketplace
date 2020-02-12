@@ -1,1 +1,0 @@
-$("#sidebar-area").load("../../../html/components/sidebar.html");
