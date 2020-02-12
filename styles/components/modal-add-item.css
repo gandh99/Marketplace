@@ -1,0 +1,38 @@
+.modal-content {
+    margin: 5rem auto;
+}
+
+.modal-title {
+    font-weight: bold;
+}
+
+.modal-input-area {
+    margin: 2rem 0;
+}
+
+.modal-input {
+    display: block;
+    margin: 1rem auto;
+    padding: 0.8rem 0;
+    border: solid 1px lightgray;
+}
+
+.modal-input input {
+    border: none;
+    margin: 0 1rem;
+    width: 80%;
+}
+
+#add-button {
+    font-weight: bold;
+    display: block;
+    margin: 2rem auto;
+    padding: 1rem 0;
+    width: 100%;
+    border: solid 1px gray;
+    border-radius: 0.2rem;
+    color: var(--primary-text-color);
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    cursor: pointer;
+}
