@@ -6,7 +6,7 @@
 }
 
 #add-item {
-    background-color: #1b2139;
+    background-color: var(--general-button-color);
     color: var(--primary-text-color);
     width: 80px;
     padding: 0.5rem;

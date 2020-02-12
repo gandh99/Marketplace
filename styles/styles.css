@@ -6,7 +6,9 @@
     --primary-color: #ff6347;
     --primary-text-color: #ffffff;
     --price-color: #c23504;
-    --delete-button-color: #f12639;
+    /* --general-button-color: #2f4858; */
+    --general-button-color: #40547c;
+    --delete-button-color: #e54e77;
     --alert-success-color: #dff0d8;
     --alert-warning-color: #fcf8e3;
     --alert-error-color: #f8d7da;
