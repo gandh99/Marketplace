@@ -1,1 +1,70 @@
 @import url('../styles.css');
+
+.utility-bar {
+    margin: 2rem;
+    text-align: center;
+}
+
+#add-item {
+    background-color: #1b2139;
+    color: var(--primary-text-color);
+    width: 80px;
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.items-area {
+    margin: 2rem;
+    display: grid;
+    grid-template-columns: auto;
+
+}
+
+.item-card {
+    margin: 0.2rem;
+    text-align: center;
+}
+
+.item-card-image {
+    content: '';
+    background-size: cover;
+    width: 10rem;
+    height: 7rem;
+    margin: 1rem auto;
+}
+
+#macbook {
+    background-image: url('../../images/macbook.jpg');
+}
+#micromax {
+    background-image: url('../../images/micromax.jpg');
+}
+#acer {
+    background-image: url('../../images/acer.jpg');
+}
+
+.item-card-price {
+    margin-top: 1rem;
+    color: var(--price-color);
+}
+
+.item-card-delete-button {
+    background-color: var(--delete-button-color);
+    margin: 1rem auto;
+    padding: 0.5rem;
+    width: 70%;
+    color: var(--primary-text-color);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 700px) {
+    .items-area {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+        margin: 0rem 2rem;
+    }
+    .item-card {
+        /* margin: 0rem; */
+    }
+}
