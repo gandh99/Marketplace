@@ -39,7 +39,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Routes
+app.use("/authenticate", require("./routes/authenticate"));
 app.use("/users", require("./routes/users"));
+app.use("/account", require("./routes/account"));
 
 // Start server
 const PORT = process.env.PORT || 5000;
