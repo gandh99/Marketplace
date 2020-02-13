@@ -21,10 +21,10 @@ function upload(file) {
     }, false);
 
     xhr.upload.addEventListener("load", function (e) {
-        const canvas = ctrl.ctx.canvas;
-        canvas.parentNode.removeChild(canvas);
+
     }, false);
     xhr.open("POST", addItemUrl);
+    xhr.onload = () => { console.log(xhr.response) };
     xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
     reader.onload = function (evt) {
         xhr.send(evt.target.result);
