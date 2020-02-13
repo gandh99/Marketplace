@@ -1,1 +1,1 @@
-$("#sidebar-area").load("../../html/components/sidebar.html");
+$("#sidebar-area").load("/html/components/sidebar.html");

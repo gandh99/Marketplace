@@ -6,9 +6,9 @@ sendInputData(getToken())
     .then(response => {
         if (response.status == 200) {
             sessionStorage.setItem('username', response.data);
-            $("#account-menu-area").load("../../html/components/account-menu-user.html");
+            $("#account-menu-area").load("/html/components/account-menu-user.html");
         } else if (response.status == 401 || response.status == 403 || response.status == 404) {
-            $("#account-menu-area").load("../../html/components/account-menu-guest.html");
+            $("#account-menu-area").load("/html/components/account-menu-guest.html");
         }
     }).catch(err => {
         console.log(err);
