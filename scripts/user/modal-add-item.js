@@ -26,6 +26,15 @@ fileUpload.onchange = () => {
     }
 }
 
+// Display category selected
+const categoryDropBtn = document.getElementsByClassName('category-dropbtn')[0];
+let categoryNames = document.getElementsByClassName('category-name');
+for (let category of categoryNames) {
+    category.addEventListener('click', () => {
+        categoryDropBtn.innerHTML = category.innerHTML;
+    });
+}
+
 const sendItemToServer = (file, itemName, itemPrice) => {
     let xhr = new XMLHttpRequest();
     let path = addItemUrl;
