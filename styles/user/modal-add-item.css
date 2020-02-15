@@ -1,4 +1,4 @@
-@import url('../components/dropdown.css');
+@import url('../user/modal-dropdown.css');
 
 .modal-content {
     margin: 5rem auto;
@@ -6,6 +6,15 @@
 
 .modal-title {
     font-weight: bold;
+    font-size: 1.2rem;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 0;
+    top: -6px;
+    padding: 0;
 }
 
 .modal-input-area {
@@ -64,4 +73,37 @@ hr {
     border-color: var(--primary-color);
     background-color: var(--primary-color);
     cursor: pointer;
+}
+
+@media screen and (min-width: 700px) {
+    #modal-background {
+        overflow: hidden;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+    }
+
+    .modal-input-area {
+        display: flex;
+        flex-direction: row;
+        margin-top: 3rem;
+    }
+
+    .modal-image-area {
+        width: 40%;
+        margin: auto 0;
+    }
+
+    .modal-form-area {
+        width: 60%;
+    }
+
+    #add-item-button {
+        margin: 0;
+    }
+
+    hr {
+        display: none;
+    }
 }

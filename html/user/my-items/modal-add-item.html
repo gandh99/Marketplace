@@ -3,33 +3,37 @@
     <link rel="stylesheet" href="/styles/user/modal-add-item.css">
     <!-- Modal content -->
     <div class="modal-content">
-        <div class="close">&times;</div>
-        <div class="modal-title">Add New Item for Sale</div>
-        <div class="modal-input-area">
-            <img id="modal-image-preview" src="#" alt="" />
-            <label class="file-upload-button">
-                <input type="file" id="modal-file-upload" accept="image/*" />
-                Upload Image
-            </label>
-
-            <hr>
-
-            <div class="dropdown">
-                <div class="dropbtn">Category <i class="fa fa-caret-down"></i></div>
-                <div class="dropdown-content">
-                    <a href="#">Mouse</a>
-                    <a href="#">Keyboard</a>
-                    <a href="#">Laptop</a>
-                    <a href="#">Monitor</a>
-                    <a href="#">SSD</a>
-                    <a href="#">GPU</a>
-                    <a href="#">RAM</a>
-                </div>
-            </div>
-            <div class="modal-input"><input type="text" id="item-name" placeholder="Item Name" maxlength="10"></div>
-            <div class="modal-input"><input type="text" id="item-price" placeholder="Price" maxlength="20"></div>
-            <button id="add-item-button">Add Item</button>
+        <div class="modal-title">
+            Add New Item for Sale
+            <span class="close">&times;</span>
         </div>
+        <div class="modal-input-area">
+            <div class="modal-image-area">
+                <img id="modal-image-preview" src="#" alt="No Image Selected" />
+                <label class="file-upload-button">
+                    <input type="file" id="modal-file-upload" accept="image/*" />
+                    Upload Image
+                </label>
+            </div>
+            <hr>
+            <div class="modal-form-area">
+                <div class="category-dropdown">
+                    <div class="category-dropbtn">Category <i class="fa fa-caret-down"></i></div>
+                    <div class="category-dropdown-content">
+                        <a href="#">Mouse</a>
+                        <a href="#">Keyboard</a>
+                        <a href="#">Laptop</a>
+                        <a href="#">Monitor</a>
+                        <a href="#">SSD</a>
+                        <a href="#">GPU</a>
+                        <a href="#">RAM</a>
+                    </div>
+                </div>
+                <div class="modal-input"><input type="text" id="item-name" placeholder="Item Name" maxlength="10"></div>
+                <div class="modal-input"><input type="text" id="item-price" placeholder="Price" maxlength="20"></div>
+            </div>
+        </div>
+        <button id="add-item-button">Add Item</button>
     </div>
 
     <script src='/scripts/components/modal.js'></script>
