@@ -5,10 +5,10 @@ import { addItemUrl } from '../routes.js';
 let addItemButton = document.getElementById('add-item-button');
 addItemButton.addEventListener('click', () => {
     let image = document.getElementById('modal-image-preview');
-    let itemName = document.getElementById('item-name');
-    let itemPrice = document.getElementById('item-price');
+    let itemName = document.getElementById('item-name').value;
+    let itemPrice = document.getElementById('item-price').value;
 
-    uploadImage(image, 'My Item', 'image/jpeg');
+    uploadItemToServer(image, 'image/jpeg', itemName, itemPrice);
 });
 
 // Allow the image to be previewed
@@ -38,10 +38,15 @@ const convertToBase64 = function (img, imagetype, callback) {
     callback(data);
 };
 
-const sendBase64ToServer = function (name, base64) {
+const sendDataToServer = function (base64, itemName, itemPrice) {
     let xhr = new XMLHttpRequest();
     let path = addItemUrl;
-    let data = JSON.stringify({ image: base64 });
+    let data = JSON.stringify({ 
+        image: base64,
+        name: itemName,
+        price: itemPrice 
+    });
+    xhr.open("POST", path, true);
     xhr.onload = function (err) {
         if (xhr.status == 200) {
             console.log(xhr.response);
@@ -49,15 +54,13 @@ const sendBase64ToServer = function (name, base64) {
             console.log(xhr.response);
         }
     };
-    // Set the content type of the request to json since that's what's being sent
-    xhr.open("POST", path, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
     xhr.send(data);
 };
 
-const uploadImage = function (img, name, type) {
+const uploadItemToServer = function (img, type, itemName, itemPrice) {
     convertToBase64(img, type, function (data) {
-        sendBase64ToServer(name, data);
+        sendDataToServer(data, itemName, itemPrice);
     });
 };
