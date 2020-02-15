@@ -1,9 +1,22 @@
-const fs = require('fs');
+const mv = require('mv');
+const path = require('path');
+const formidable = require('formidable');
 
 module.exports.addItem = (req, res, next) => {
-    let base64Data = req.body.image.replace(/^data:image\/jpeg;base64,/, "");
-    fs.writeFile("out.jpg", base64Data, 'base64', function (err) {
-        console.log(err);
+    var form = new formidable.IncomingForm();
+    form.parse(req, (err, fields, files) => {
+        if (err) throw err; // process error
+
+        // Get root directory of project
+        let appDir = path.dirname(require.main.filename);
+
+        // Move file from /tmp/ to another location
+        let oldPath = files.imageFile.path;
+        let newPath = appDir + '/itemImages/' + files.imageFile.name;
+        mv(oldPath, newPath, function (err) {
+            if (err) throw err;
+            res.status(200).send('Successfully added item.');
+        });
     });
-    res.status(200).send('Successfully added item!');
-};
+
+}

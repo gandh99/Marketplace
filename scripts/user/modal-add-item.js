@@ -4,11 +4,12 @@ import { addItemUrl } from '../routes.js';
 // Submit the item to be added on the server
 let addItemButton = document.getElementById('add-item-button');
 addItemButton.addEventListener('click', () => {
-    let image = document.getElementById('modal-image-preview');
+    let imageFile = document.getElementById('modal-file-upload').files[0];
     let itemName = document.getElementById('item-name').value;
     let itemPrice = document.getElementById('item-price').value;
-
-    uploadItem(image, 'image/jpeg', itemName, itemPrice);
+    
+    // uploadItem(image, 'image/jpeg', itemName, itemPrice);
+    sendDataToServer2(imageFile, itemName, itemPrice);
 });
 
 // Allow the image to be previewed
@@ -26,6 +27,29 @@ fileUpload.onchange = () => {
     }
 }
 
+////
+
+const sendDataToServer2 = function (file, itemName, itemPrice) {
+    let xhr = new XMLHttpRequest();
+    let path = addItemUrl;
+    var formData = new FormData();
+    formData.append("imageFile", file);
+
+    xhr.open("POST", path, true);
+    xhr.onload = function (err) {
+        if (xhr.status == 200) {
+            console.log(xhr.response);
+        } else {
+            console.log(xhr.response);
+        }
+    };
+    // xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
+    xhr.send(formData);
+};
+
+////
+
 const uploadItem = function (img, type, itemName, itemPrice) {
     convertToBase64(img, type, function (data) {
         sendDataToServer(data, itemName, itemPrice);
@@ -35,10 +59,10 @@ const uploadItem = function (img, type, itemName, itemPrice) {
 const sendDataToServer = function (base64, itemName, itemPrice) {
     let xhr = new XMLHttpRequest();
     let path = addItemUrl;
-    let data = JSON.stringify({ 
+    let data = JSON.stringify({
         image: base64,
         name: itemName,
-        price: itemPrice 
+        price: itemPrice
     });
     xhr.open("POST", path, true);
     xhr.onload = function (err) {
