@@ -8,7 +8,7 @@ addItemButton.addEventListener('click', () => {
     let itemName = document.getElementById('item-name').value;
     let itemPrice = document.getElementById('item-price').value;
 
-    uploadItemToServer(image, 'image/jpeg', itemName, itemPrice);
+    uploadItem(image, 'image/jpeg', itemName, itemPrice);
 });
 
 // Allow the image to be previewed
@@ -26,16 +26,10 @@ fileUpload.onchange = () => {
     }
 }
 
-const convertToBase64 = function (img, imagetype, callback) {
-    let canvas = document.createElement('CANVAS');
-    let ctx = canvas.getContext('2d');
-    let data = '';
-
-    canvas.height = img.height;
-    canvas.width = img.width;
-    ctx.drawImage(img, 0, 0);
-    data = canvas.toDataURL(imagetype);
-    callback(data);
+const uploadItem = function (img, type, itemName, itemPrice) {
+    convertToBase64(img, type, function (data) {
+        sendDataToServer(data, itemName, itemPrice);
+    });
 };
 
 const sendDataToServer = function (base64, itemName, itemPrice) {
@@ -59,8 +53,14 @@ const sendDataToServer = function (base64, itemName, itemPrice) {
     xhr.send(data);
 };
 
-const uploadItemToServer = function (img, type, itemName, itemPrice) {
-    convertToBase64(img, type, function (data) {
-        sendDataToServer(data, itemName, itemPrice);
-    });
+const convertToBase64 = function (img, imagetype, callback) {
+    let canvas = document.createElement('CANVAS');
+    let ctx = canvas.getContext('2d');
+    let data = '';
+
+    canvas.height = img.height;
+    canvas.width = img.width;
+    ctx.drawImage(img, 0, 0, canvas.height, canvas.width);
+    data = canvas.toDataURL(imagetype);
+    callback(data);
 };

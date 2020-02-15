@@ -34,9 +34,9 @@ app.use((req, res, next) => {
     next();
 });
 
-// Bodyparser
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+// Bodyparser. Include limits because we want to receive large image data
+app.use(express.urlencoded({ limit: '50mb', extended: false }));
+app.use(express.json({limit: '50mb'}));
 
 // Routes
 app.use("/authenticate", require("./routes/authenticate"));
