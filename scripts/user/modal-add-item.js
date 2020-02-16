@@ -8,7 +8,7 @@ addItemButton.addEventListener('click', () => {
     let itemName = document.getElementById('item-name').value;
     let itemPrice = document.getElementById('item-price').value;
 
-    sendItemToServer(imageFile, itemName, itemPrice);
+    sendItemToServer(imageFile, activeCategory, itemName, itemPrice);
 });
 
 // Allow the image to be previewed
@@ -27,16 +27,19 @@ fileUpload.onchange = () => {
 }
 
 // Display category selected
+let activeCategory;
 const categoryDropBtn = document.getElementsByClassName('category-dropbtn')[0];
 let categoryNames = document.getElementsByClassName('category-name');
 for (let category of categoryNames) {
     category.addEventListener('click', () => {
         categoryDropBtn.innerHTML = category.innerHTML;
+        activeCategory = category.innerHTML;
     });
 }
 
-const sendItemToServer = (file, itemName, itemPrice) => {
+const sendItemToServer = (file, itemCategory, itemName, itemPrice) => {
     let itemData = {
+        category: itemCategory,
         name: itemName,
         price: itemPrice
     };
@@ -53,7 +56,6 @@ const sendItemToServer = (file, itemName, itemPrice) => {
             console.log(xhr.response);
         }
     };
-    // xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
     xhr.send(formData);
 };
