@@ -3,7 +3,7 @@ const sql = require('../models/users');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
-module.exports.login = (req, res, done) => {console.log('hi')
+module.exports.login = (req, res, done) => {
     passport.authenticate('local', (err, user, info) => {
         if (err) throw err;
         if (!user) {
@@ -12,7 +12,7 @@ module.exports.login = (req, res, done) => {console.log('hi')
             let tokenData = {
                 username: user.username
             }
-            const accessToken = jwt.sign({ tokenData }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '0.25h' });
+            const accessToken = jwt.sign({ tokenData }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '0.5h' });
             res.status(200).send(accessToken);
         }
     })(req, res, done);

@@ -53,15 +53,3 @@ module.exports.getUserById = function (id) {
         done(result[0]);
     });
 }
-
-// module.exports.loginUser = function (username, password, done) {
-//     let loginSql = 'SELECT * FROM users WHERE username = ? AND password = ?';
-//     db.get().query(loginSql, [username, password], (err, result) => {
-//         if (err) throw err;
-//         if (result.length <= 0) {
-//             done('Invalid username or password.');
-//         } else {
-//             done('');
-//         }
-//     });
-// }

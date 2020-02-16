@@ -7,7 +7,7 @@ addItemButton.addEventListener('click', () => {
     let imageFile = document.getElementById('modal-file-upload').files[0];
     let itemName = document.getElementById('item-name').value;
     let itemPrice = document.getElementById('item-price').value;
-    
+
     sendItemToServer(imageFile, itemName, itemPrice);
 });
 
@@ -36,12 +36,16 @@ for (let category of categoryNames) {
 }
 
 const sendItemToServer = (file, itemName, itemPrice) => {
-    let xhr = new XMLHttpRequest();
-    let path = addItemUrl;
-    var formData = new FormData();
+    let itemData = {
+        name: itemName,
+        price: itemPrice
+    };
+    let formData = new FormData();
     formData.append("imageFile", file);
+    formData.append('itemData', JSON.stringify(itemData));
 
-    xhr.open("POST", path, true);
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", addItemUrl, true);
     xhr.onload = function (err) {
         if (xhr.status == 200) {
             console.log(xhr.response);
