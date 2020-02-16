@@ -1,7 +1,8 @@
 @import url('../user/modal-dropdown.css');
+@import url('../components/input-error-display.css');
 
 .modal-content {
-    margin: 5rem auto;
+    margin: 3rem auto;
 }
 
 .modal-title {

@@ -1,4 +1,6 @@
 @import url("../styles.css");
+@import url('../components/input-error-display.css');
+
 #login-area {
     margin: 3rem 1.5rem;
     padding: 30px;
@@ -8,18 +10,6 @@
     text-align: center;
     font-weight: bold;
     font-size: 1.2rem;
-}
-
-.input-errors-area {
-    margin: 2rem 0;
-}
-
-.input-error {
-    background-color: var(--alert-error-color);
-    border-radius: 10px;
-    font-size: 0.8rem;
-    padding: 1rem;
-    margin: 1rem 0;
 }
 
 .success-message {

@@ -1,3 +1,5 @@
+import { removeErrors } from './input-error-display.js';
+
 // Get the modal
 var modal = document.getElementById("modal-background");
 
@@ -14,12 +16,14 @@ btn.onclick = function() {
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
+  removeErrors();
   modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
+    removeErrors();
     modal.style.display = "none";
   }
 } 

@@ -1,5 +1,6 @@
 import { getToken } from '../authentication/jwt.js'
 import { addItemUrl } from '../routes.js';
+import { showErrors, removeErrors } from '../components/input-error-display.js';
 
 // Submit the item to be added on the server
 let addItemButton = document.getElementById('add-item-button');
@@ -37,7 +38,35 @@ for (let category of categoryNames) {
     });
 }
 
-const sendItemToServer = (file, itemCategory, itemName, itemPrice) => {
+function validateInput(file, itemCategory, itemName, itemPrice) {
+    let errors = [];
+
+    if (!file || !itemCategory || !itemName || !itemPrice) {
+        errors.push('All fields must be filled in and the item must have an image uploaded.');
+        return errors;
+    }
+    const pattern = /^[\w&.\-_]+$/;
+    if (!itemName.match(pattern)) {
+        errors.push('Item name has disallowed special characters.');
+        return errors;
+    }
+    if (typeof itemPrice != 'number') {
+        errors.push('Item price must be a number.');
+        return errors;
+    }
+
+    return errors;
+}
+
+function sendItemToServer(file, itemCategory, itemName, itemPrice) {
+    // Input validation before allowing data to be sent to server
+    removeErrors();
+    let errors = validateInput(file, itemCategory, itemName, itemPrice);
+    if (errors.length > 0) {
+        showErrors(errors);
+        return;
+    }
+
     let itemData = {
         category: itemCategory,
         name: itemName,

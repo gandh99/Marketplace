@@ -1,4 +1,5 @@
 import { registerUrl } from '../routes.js';
+import { showErrors, removeErrors } from '../components/input-error-display.js';
 
 const registerButton = document.getElementById("register-button");
 registerButton.addEventListener("click", () => {
@@ -31,23 +32,6 @@ registerButton.addEventListener("click", () => {
             console.log(err);
         });
 });
-
-function showErrors(errors) {
-    const inputErrorsArea = document.getElementsByClassName('input-errors-area')[0];
-    for (let error of errors) {
-        let inputError = document.createElement('div');
-        inputError.className = 'input-error';
-        inputError.textContent = error;
-        inputErrorsArea.appendChild(inputError);
-    }
-}
-
-function removeErrors() {
-    const inputErrorsArea = document.getElementsByClassName('input-errors-area')[0];
-    while (inputErrorsArea.firstChild) {
-        inputErrorsArea.removeChild(inputErrorsArea.firstChild);
-    };
-}
 
 function validateInput(inputData) {
     let errors = [];
