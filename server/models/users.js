@@ -38,7 +38,6 @@ module.exports.registerUser = function (username, password, done) {
 }
 
 module.exports.getUser = function (username, done) {
-    let user = {};
     let sql = 'SELECT * FROM users WHERE username = ? LIMIT 1';
     db.get().query(sql, username, (err, result) => {
         if (err) throw err;

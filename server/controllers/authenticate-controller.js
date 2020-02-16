@@ -11,6 +11,6 @@ module.exports.authenticateToken = (req, res, done) => {
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) return res.sendStatus(403);
         req.user = user.tokenData;   // user.tokenData because we sign jwt with {user} instead of JSON.stringify(user)
-        done();
+        done(null, user);
     });
 };
