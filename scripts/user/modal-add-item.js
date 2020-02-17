@@ -50,7 +50,7 @@ function validateInput(file, itemCategory, itemName, itemPrice) {
         errors.push('Item name has disallowed special characters.');
         return errors;
     }
-    if (typeof itemPrice != 'number') {
+    if (!Number(itemPrice)) {
         errors.push('Item price must be a number.');
         return errors;
     }
