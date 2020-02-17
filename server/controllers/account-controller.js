@@ -48,3 +48,7 @@ function saveItemToDatabase(itemData, res) {
         res.status(200).send(result);
     });
 }
+
+module.exports.getItem = (req, res, next) => {
+    res.status(200).send('hi!')
+}
