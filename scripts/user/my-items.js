@@ -8,18 +8,19 @@ retrieveMyItems();
 // Get the user's list of items
 function retrieveMyItems() {
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', getItemUrl);
+    xhr.open('GET', getItemUrl);
     // xhr.setRequestHeader('content-type', 'application/json');
     xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
     xhr.onload = () => {
-        console.log({status: xhr.status, data: xhr.response});
+        let itemArray = JSON.parse(xhr.response);
+        displayItems(itemArray);
     };
     xhr.send();
 }
 
 // Items is an array of JSON objects
-function displayItems(items) {
-    for (let item of items) {
+function displayItems(itemArray) {
+    for (let item of itemArray) {
         createItem(item);
     }
 }
@@ -41,8 +42,8 @@ function createItem(item) {
 
     // Add the item data
     // itemCardImage.innerHTML = ;
-    itemCardTitle.innerHTML = item.title;
-    itemCardPrice.innerHTML = item.price;
+    itemCardTitle.innerHTML = item.item_name;
+    itemCardPrice.innerHTML = 'S$' + item.item_price;
     deleteButton.innerHTML = 'Remove Item';
 
     // Attach to item card

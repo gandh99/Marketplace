@@ -14,3 +14,11 @@ module.exports.addNewItem = (itemImage, itemCategory, itemName, itemPrice, owner
         done(result[0]);
     });
 };
+
+module.exports.getItemsByOwnerId = (ownerId, done) => {
+    let sql = 'SELECT * FROM active_items WHERE owner_id = ?';
+    db.get().query(sql, ownerId, (err, result) => {
+        if (err) throw err;
+        done(result);
+    })
+}

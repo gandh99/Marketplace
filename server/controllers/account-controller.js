@@ -50,5 +50,18 @@ function saveItemToDatabase(itemData, res) {
 }
 
 module.exports.getItem = (req, res, next) => {
-    res.status(200).send('hi!')
+    new Promise((resolve, reject) => {
+        // Extract the id of the user making the request
+        auth.authenticateToken(req, res, (nil, user) => {
+            let username = user.tokenData.username;
+            users.getUser(username, fullUser => {
+                let userId = fullUser.user_id;
+                resolve(userId.toString()); // needs to be a string to resolve
+            });
+        });
+    }).then((userId) => {
+        items.getItemsByOwnerId(userId, result => {
+            res.status(200).send(result)
+        });
+    })
 }

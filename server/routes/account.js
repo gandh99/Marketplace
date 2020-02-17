@@ -6,6 +6,6 @@ const auth = require('../controllers/authenticate-controller');
 const accountController = require('../controllers/account-controller');
 
 router.post('/add-item', auth.authenticateToken, accountController.addItem);
-router.post('/get-item', auth.authenticateToken, accountController.getItem);
+router.get('/get-item', auth.authenticateToken, accountController.getItem);
 
 module.exports = router;
