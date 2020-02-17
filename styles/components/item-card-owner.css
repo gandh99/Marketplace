@@ -1,0 +1,29 @@
+@import url('../styles.css');
+
+.item-card {
+    margin: 0.2rem;
+    text-align: center;
+}
+
+.item-card-image {
+    content: '';
+    background-size: cover;
+    width: 10rem;
+    height: 7rem;
+    margin: 1rem auto;
+}
+
+.item-card-price {
+    margin-top: 1rem;
+    color: var(--price-color);
+}
+
+.item-card-delete-button {
+    background-color: var(--delete-button-color);
+    margin: 1rem auto;
+    padding: 0.5rem;
+    width: 70%;
+    color: var(--primary-text-color);
+    border-radius: 4px;
+    cursor: pointer;
+}
