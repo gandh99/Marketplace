@@ -9,7 +9,6 @@ retrieveMyItems();
 function retrieveMyItems() {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', getItemUrl);
-    // xhr.setRequestHeader('content-type', 'application/json');
     xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
     xhr.onload = () => {
         let itemArray = JSON.parse(xhr.response);
