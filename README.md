@@ -14,5 +14,6 @@ A simple e-commerce website for users to buy and sell their products.
   - Bcrypt for salting and hashing user passwords
   - PassportJS for handling user authentication
   - Javascript Web Token (JWT) for maintaining user sessions
+  - Formidable for receiving forms comprising images and JSON objects
 
 ## Screenshots
