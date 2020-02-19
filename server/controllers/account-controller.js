@@ -51,7 +51,7 @@ function saveItemToDatabase(itemData, res) {
     });
 }
 
-module.exports.getItem = (req, res, next) => {
+module.exports.getItem = (req, res) => {
     getUser(req, res)
         .then(userId => getUserItems(userId))
         .then(result => appendItemImages(result))

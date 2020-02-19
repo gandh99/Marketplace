@@ -81,8 +81,8 @@ function sendItemToServer(file, itemCategory, itemName, itemPrice) {
     xhr.onload = function (err) {
         if (xhr.status == 200) {
             console.log(xhr.response);
-        } else {
-            console.log(xhr.response);
+        } else if (xhr.status == 403) {
+            showErrors(['Please login to add new items.']);
         }
     };
     xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());

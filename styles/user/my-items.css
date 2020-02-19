@@ -21,15 +21,11 @@
 
 }
 
-/* #macbook {
-    background-image: url('../../images/macbook.jpg');
+.message-area {
+    margin: 5rem auto;
+    font-size: 1.5rem;
+    text-align: center;
 }
-#micromax {
-    background-image: url('../../images/micromax.jpg');
-}
-#acer {
-    background-image: url('../../images/acer.jpg');
-} */
 
 @media screen and (min-width: 700px) {
     .items-area {

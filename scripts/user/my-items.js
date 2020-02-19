@@ -11,8 +11,13 @@ function retrieveMyItems() {
     xhr.open('GET', getItemUrl);
     xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
     xhr.onload = () => {
-        let itemArray = JSON.parse(xhr.response);
-        displayItems(itemArray);
+        if (xhr.status == 200) {
+            let itemArray = JSON.parse(xhr.response);
+            displayItems(itemArray);
+        } else if (xhr.status == 403) {
+            let message = 'Please login to view your items';
+            displayMessage(message);
+        } 
     };
     xhr.send();
 }
@@ -39,7 +44,7 @@ function createItem(item) {
     let itemCardTitle = document.createElement('div');
     let itemCardPrice = document.createElement('div');
     let deleteButton = document.createElement('div');
-    
+
     // Assign the necessary attributes
     itemCard.setAttribute('class', 'item-card');
     itemCardImage.setAttribute('class', 'item-card-image');
@@ -61,4 +66,9 @@ function createItem(item) {
 
     // Put item card in items area
     itemsArea.appendChild(itemCard);
+}
+
+function displayMessage(message) {
+    const messageArea = document.getElementsByClassName('message-area')[0];
+    messageArea.innerHTML = message;
 }
