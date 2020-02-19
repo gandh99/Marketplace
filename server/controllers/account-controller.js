@@ -52,13 +52,13 @@ function saveItemToDatabase(itemData, res) {
 }
 
 module.exports.getItem = (req, res) => {
-    getUser(req, res)
-        .then(userId => getUserItems(userId))
-        .then(result => appendItemImages(result))
+    getUserId(req, res)
+        .then(getUserItems)
+        .then(appendItemImages)
         .then(result => res.status(200).send(result))
 }
 
-function getUser(req, res) {
+function getUserId(req, res) {
     return new Promise((resolve, reject) => {
         // Extract the id of the user making the request
         auth.authenticateToken(req, res, (nil, user) => {
@@ -94,4 +94,8 @@ function getImageOfSingleItem(item) {
             resolve(item)
         });
     })
+}
+
+module.exports.deleteItem = (req, res) => {
+    res.status(200).send('deleted')
 }

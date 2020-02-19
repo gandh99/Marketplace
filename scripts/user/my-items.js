@@ -1,4 +1,4 @@
-import { getItemUrl } from '../routes.js';
+import { getItemUrl, deleteItemUrl } from '../routes.js';
 import { getToken } from '../authentication/jwt.js';
 
 const itemsArea = document.getElementsByClassName('items-area')[0];
@@ -57,6 +57,9 @@ function createItem(item) {
     itemCardTitle.innerHTML = item.item_name;
     itemCardPrice.innerHTML = 'S$' + item.item_price;
     deleteButton.innerHTML = 'Remove Item';
+    deleteButton.addEventListener('click', () => {
+        deleteItem(item);
+    });
 
     // Attach to item card
     itemCard.appendChild(itemCardImage);
@@ -71,4 +74,19 @@ function createItem(item) {
 function displayMessage(message) {
     const messageArea = document.getElementsByClassName('message-area')[0];
     messageArea.innerHTML = message;
+}
+
+function deleteItem(item) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('DELETE', deleteItemUrl);
+    xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
+    xhr.onload = () => {
+        if (xhr.status == 200) {
+            console.log(xhr.response);
+        } else if (xhr.status == 403) {
+            // let message = 'Please login to view your items';
+            // displayMessage(message);
+        } 
+    };
+    xhr.send();
 }

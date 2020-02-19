@@ -7,3 +7,4 @@ export const loginUrl = host + '/users/login';
 export const logoutUrl = host + '/users/logout';
 export const addItemUrl = host + '/account/add-item';
 export const getItemUrl = host + '/account/get-item';
+export const deleteItemUrl = host + '/account/delete-item';
