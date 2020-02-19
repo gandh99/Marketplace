@@ -17,6 +17,14 @@ function retrieveMyItems() {
     xhr.send();
 }
 
+// Create an image from the base64Image and append it to the itemCardImage
+function createItemImage(itemCardImage, base64Image) {
+    let image = new Image();
+    image.src = base64Image;
+    image.style.width = '80%';
+    itemCardImage.appendChild(image);
+}
+
 // Items is an array of JSON objects
 function displayItems(itemArray) {
     for (let item of itemArray) {
@@ -40,7 +48,7 @@ function createItem(item) {
     deleteButton.setAttribute('class', 'item-card-delete-button');
 
     // Add the item data
-    // itemCardImage.innerHTML = ;
+    createItemImage(itemCardImage, item.item_image_base64);
     itemCardTitle.innerHTML = item.item_name;
     itemCardPrice.innerHTML = 'S$' + item.item_price;
     deleteButton.innerHTML = 'Remove Item';

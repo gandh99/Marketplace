@@ -1,6 +1,8 @@
 const mv = require('mv');
 const path = require('path');
 const formidable = require('formidable');
+const fs = require('fs');
+var base64Img = require('base64-img');
 const auth = require('./authenticate-controller');
 const users = require('../models/users');
 const items = require('../models/items');
@@ -50,7 +52,14 @@ function saveItemToDatabase(itemData, res) {
 }
 
 module.exports.getItem = (req, res, next) => {
-    new Promise((resolve, reject) => {
+    getUser(req, res)
+        .then(userId => getUserItems(userId))
+        .then(result => appendItemImages(result))
+        .then(result => res.status(200).send(result))
+}
+
+function getUser(req, res) {
+    return new Promise((resolve, reject) => {
         // Extract the id of the user making the request
         auth.authenticateToken(req, res, (nil, user) => {
             let username = user.tokenData.username;
@@ -59,9 +68,30 @@ module.exports.getItem = (req, res, next) => {
                 resolve(userId.toString()); // needs to be a string to resolve
             });
         });
-    }).then((userId) => {
+    })
+}
+
+function getUserItems(userId) {
+    return new Promise((resolve, reject) => {
         items.getItemsByOwnerId(userId, result => {
-            res.status(200).send(result)
+            resolve(result);
+        });
+    })
+}
+
+function appendItemImages(result) {
+    // Iterate through the result, get the filenames for the images and convert them into base64
+    return Promise.all(result.map(getImageOfSingleItem));
+}
+
+function getImageOfSingleItem(item) {
+    const appDir = path.dirname(require.main.filename);
+
+    return new Promise((resolve, reject) => {
+        base64Img.base64(appDir + '/itemImages/' + item.item_image, (err, data) => { //CRUCIAL LINE!
+            if (err) throw err;
+            item.item_image_base64 = data;
+            resolve(item)
         });
     })
 }
