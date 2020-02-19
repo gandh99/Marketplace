@@ -76,16 +76,17 @@ function displayMessage(message) {
     messageArea.innerHTML = message;
 }
 
+// Delete the item by supplying its item_id to the server
 function deleteItem(item) {
     const xhr = new XMLHttpRequest();
-    xhr.open('DELETE', deleteItemUrl);
+    xhr.open('DELETE', deleteItemUrl + '/' + item.item_id);
     xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
     xhr.onload = () => {
         if (xhr.status == 200) {
-            console.log(xhr.response);
+            location.reload();
         } else if (xhr.status == 403) {
-            // let message = 'Please login to view your items';
-            // displayMessage(message);
+            let message = 'Please login to delete your item';
+            displayMessage(message);
         } 
     };
     xhr.send();

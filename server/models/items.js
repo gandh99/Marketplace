@@ -22,3 +22,11 @@ module.exports.getItemsByOwnerId = (ownerId, done) => {
         done(result);
     })
 }
+
+module.exports.deleteItem = (itemId, done) => {
+    let sql = 'DELETE FROM active_items WHERE item_id = ?';
+    db.get().query(sql, itemId, (err, result) => {
+        if (err) throw err;
+        done(result);
+    })
+}

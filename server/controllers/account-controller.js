@@ -97,5 +97,8 @@ function getImageOfSingleItem(item) {
 }
 
 module.exports.deleteItem = (req, res) => {
-    res.status(200).send('deleted')
+    let itemId = req.params.id;
+    items.deleteItem(itemId, result => {
+        res.status(200).send('Successfully deleted item.');
+    })
 }
