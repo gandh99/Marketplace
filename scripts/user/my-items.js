@@ -1,5 +1,6 @@
 import { getItemUrl, deleteItemUrl } from '../routes.js';
 import { getToken } from '../authentication/jwt.js';
+import ConfirmationModal from '../components/confirmation-modal.js';
 
 const itemsArea = document.getElementsByClassName('items-area')[0];
 
@@ -58,7 +59,7 @@ function createItem(item) {
     itemCardPrice.innerHTML = 'S$' + item.item_price;
     deleteButton.innerHTML = 'Remove Item';
     deleteButton.addEventListener('click', () => {
-        deleteItem(item);
+        displayConfirmationModal(deleteButton, item);
     });
 
     // Attach to item card
@@ -74,6 +75,13 @@ function createItem(item) {
 function displayMessage(message) {
     const messageArea = document.getElementsByClassName('message-area')[0];
     messageArea.innerHTML = message;
+}
+
+function displayConfirmationModal(button, item) {
+    const title = 'Delete Item';
+    const message = 'Are you sure you wish to delete this item?';
+    const deleteFunction = function() { deleteItem(item) };
+    new ConfirmationModal().show(button, title, message, deleteFunction);
 }
 
 // Delete the item by supplying its item_id to the server
