@@ -1,8 +1,42 @@
 @import url('../styles.css');
-
 .utility-bar {
-    margin: 2rem;
+    margin: 2rem 0.2rem;
     text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.utility-bar * {
+    font-size: 0.8rem;
+}
+
+.utility-bar>* {
+    margin: 0 0.8rem;
+}
+
+.search-container {
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px lightgray;
+}
+
+.search-container input {
+    width: 8rem;
+    height: 100%;
+    padding: 0 20px;
+    border: none;
+}
+
+.search-container button {
+    float: right;
+    height: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.searchButton img {
+    width: 20px;
 }
 
 #add-item {
@@ -11,6 +45,7 @@
     width: 80px;
     padding: 0.5rem;
     border-radius: 4px;
+    font-weight: bold;
     cursor: pointer;
 }
 
@@ -18,7 +53,6 @@
     margin: 2rem;
     display: grid;
     grid-template-columns: auto;
-
 }
 
 .message-area {
@@ -28,8 +62,20 @@
 }
 
 @media screen and (min-width: 700px) {
+    .utility-bar {
+        margin: 2rem;
+    }
+    .utility-bar>* {
+        margin: 0 2rem;
+    }
     .items-area {
         grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
         margin: 0rem 2rem;
+    }
+    .search-container input {
+        width: 20rem;
+        height: 100%;
+        padding: 0 20px;
+        border: none;
     }
 }

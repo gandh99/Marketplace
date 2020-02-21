@@ -18,6 +18,7 @@ function retrieveMyItems() {
         } else if (xhr.status == 403) {
             let message = 'Please login to view your items';
             displayMessage(message);
+            hideUtilityBar();
         } 
     };
     xhr.send();
@@ -75,6 +76,11 @@ function createItem(item) {
 function displayMessage(message) {
     const messageArea = document.getElementsByClassName('message-area')[0];
     messageArea.innerHTML = message;
+}
+
+function hideUtilityBar() {
+    const utilityBar = document.getElementsByClassName('utility-bar')[0];
+    utilityBar.style.display = 'none';
 }
 
 function displayConfirmationModal(button, item) {
