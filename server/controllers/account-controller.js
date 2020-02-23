@@ -32,9 +32,10 @@ module.exports.addItem = (req, res, next) => {
                 let appDir = path.dirname(require.main.filename);
 
                 // Move file from /tmp/ to new path
+                let filename = itemData.userId + '_' + file.name;   // generate unique identifier for filename
                 let oldPath = file.path;
-                let newPath = appDir + '/itemImages/' + file.name;
-                itemData.itemImage = file.name;  //TODO: hash this name
+                let newPath = appDir + '/itemImages/' + filename;
+                itemData.itemImage = filename;  
                 mv(oldPath, newPath, function (err) {
                     if (err) throw err;
                     return true
