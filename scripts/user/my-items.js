@@ -6,7 +6,6 @@ const itemsArea = document.getElementsByClassName('items-area')[0];
 const messageArea = document.getElementsByClassName('message-area')[0];
 let myItemsHolder;
 
-clearInputs();
 retrieveMyItems();
 
 // Get the user's list of items from the server
