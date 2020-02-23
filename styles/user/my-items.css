@@ -52,7 +52,8 @@
 .items-area {
     margin: 2rem;
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    justify-items: center;
 }
 
 .message-area {
