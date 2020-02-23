@@ -23,6 +23,14 @@ module.exports.getItemsByOwnerId = (ownerId, done) => {
     })
 }
 
+module.exports.getItemsByCategory = (category, done) => {
+    let sql = 'SELECT * FROM active_items WHERE item_category = ?';
+    db.get().query(sql, category, (err, result) => {
+        if (err) throw err;
+        done(result);
+    })
+}
+
 module.exports.deleteItem = (itemId, done) => {
     let sql = 'DELETE FROM active_items WHERE item_id = ?';
     db.get().query(sql, itemId, (err, result) => {

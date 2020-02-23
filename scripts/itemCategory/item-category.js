@@ -9,7 +9,7 @@ export function loadItems(category) {
 function getItemsFromServer(category) {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', itemCategoryUrl + category);
-    xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
+    // xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
     xhr.onload = () => {
         if (xhr.status == 200) {
             let itemArray = xhr.response;

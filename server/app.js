@@ -43,6 +43,7 @@ app.use(express.json({}));
 app.use("/authenticate", require("./routes/authenticate"));
 app.use("/users", require("./routes/users"));
 app.use("/account", require("./routes/account"));
+app.use("/items", require("./routes/items"));
 
 // Start server
 const PORT = process.env.PORT || 5000;
