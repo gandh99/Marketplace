@@ -36,6 +36,7 @@ function createItemImage(itemCardImage, base64Image) {
 // Items is an array of JSON objects
 function displayItems(itemArray) {
     removeAllItems();
+    displayMessage('');
 
     if (itemArray.length == 0) {
         displayMessage('No items to show.');
