@@ -3,17 +3,18 @@ import { getToken } from '../authentication/jwt.js';
 import ConfirmationModal from '../components/confirmation-modal.js';
 
 const itemsArea = document.getElementsByClassName('items-area')[0];
+let itemArray;
 
 retrieveMyItems();
 
-// Get the user's list of items
+// Get the user's list of items from the server
 function retrieveMyItems() {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', getItemUrl);
     xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
     xhr.onload = () => {
         if (xhr.status == 200) {
-            let itemArray = JSON.parse(xhr.response);
+            itemArray = JSON.parse(xhr.response);
             displayItems(itemArray);
         } else if (xhr.status == 403) {
             let message = 'Please login to view your items';
@@ -34,11 +35,23 @@ function createItemImage(itemCardImage, base64Image) {
 
 // Items is an array of JSON objects
 function displayItems(itemArray) {
+    removeAllItems();
+
+    if (itemArray.length == 0) {
+        displayMessage('No items to show.');
+    }
+
     for (let item of itemArray) {
         createItem(item);
     }
 }
 
+// Removes all items displayed
+function removeAllItems() {
+    itemsArea.innerHTML = '';
+}
+
+// Create the item to be attached to the itemsArea
 function createItem(item) {
     // Create the html elements
     let itemCard = document.createElement('div');
@@ -104,4 +117,23 @@ function deleteItem(item) {
         } 
     };
     xhr.send();
+}
+
+// Implement search functionality 
+let searchTerm = document.getElementsByClassName('searchTerm')[0];
+searchTerm.addEventListener('keyup', () => {
+    let searchValue = searchTerm.value;
+    let filteredItems = filterBySearchValue(searchValue);
+    displayItems(filteredItems);
+});
+
+function filterBySearchValue(searchValue) {
+    let filteredItems = [];
+    for (let item of itemArray) {
+        if (item.item_name.includes(searchValue)) {
+            filteredItems.push(item);
+        }
+    }
+
+    return filteredItems;
 }
