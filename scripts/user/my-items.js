@@ -20,7 +20,7 @@ function retrieveMyItems() {
             let message = 'Please login to view your items';
             displayMessage(message);
             hideUtilityBar();
-        } 
+        }
     };
     xhr.send();
 }
@@ -100,7 +100,7 @@ function hideUtilityBar() {
 function displayConfirmationModal(button, item) {
     const title = 'Delete Item';
     const message = 'Are you sure you wish to delete this item?';
-    const deleteFunction = function() { deleteItem(item) };
+    const deleteFunction = function () { deleteItem(item) };
     new ConfirmationModal().show(button, title, message, deleteFunction);
 }
 
@@ -115,7 +115,7 @@ function deleteItem(item) {
         } else if (xhr.status == 403) {
             let message = 'Please login to delete your item';
             displayMessage(message);
-        } 
+        }
     };
     xhr.send();
 }
@@ -138,3 +138,12 @@ function filterBySearchValue(searchValue) {
 
     return filteredItems;
 }
+
+// Infinite scroll
+var scrollContainer = document.getElementsByClassName('items-area')[0];
+var infiniteScroll = new InfiniteScroll(scrollContainer, {
+    // options
+    path: '.pagination__next',
+    append: '.post',
+    history: false,
+});
