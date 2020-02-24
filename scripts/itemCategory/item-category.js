@@ -9,14 +9,18 @@ export function loadItems(category) {
 function getItemsFromServer(category) {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', itemCategoryUrl + category);
-    // xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
     xhr.onload = () => {
         if (xhr.status == 200) {
             let itemArray = xhr.response;
             console.log(itemArray);
-        } else if (xhr.status == 403) {
-
+        } else {
+            displayMessage('Oops! Something went wrong. Please try again later.');
         }
     };
     xhr.send();
+}
+
+function displayMessage(message) {
+    const messageArea = document.getElementsByClassName('message-area')[0];
+    messageArea.innerHTML = message;
 }
