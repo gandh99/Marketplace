@@ -46,7 +46,7 @@ function createItem(item) {
     itemPrice.setAttribute('class', 'item-price');
 
     // Add the data
-    // createItemImage(itemCardImage, item.xx);
+    createItemImage(itemCardImage, item.item_image_base64);
     itemName.innerHTML = item.item_name;
     itemPrice.innerHTML = item.item_price;
 

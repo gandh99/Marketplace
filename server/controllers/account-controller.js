@@ -80,7 +80,7 @@ function getUserItems(userId) {
     })
 }
 
-function appendItemImages(result) {
+module.exports.appendItemImages = (result) => {
     // Iterate through the result, get the filenames for the images and convert them into base64
     return Promise.all(result.map(getImageOfSingleItem));
 }
