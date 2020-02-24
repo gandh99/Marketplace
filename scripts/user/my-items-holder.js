@@ -1,19 +1,19 @@
 import ConfirmationModal from '../components/confirmation-modal.js';
 import { deleteItem } from './my-items.js';
+import { displayMessage } from './my-items.js';
 
 export default class MyItemsHolder {
-    constructor(itemsArea, messageArea, itemArray) {
+    constructor(itemsArea, itemArray) {
         this.itemArray = itemArray;
-        this.messageArea = messageArea;
         this.itemsArea = itemsArea;
     }
 
     displayItems(itemArray) {
         this.removeAllItems();
-        this.displayMessage('');
+        displayMessage('');
 
         if (itemArray.length == 0) {
-            this.displayMessage('No items to show.');
+            displayMessage('No items to show.');
         }
 
         for (let item of itemArray) {
@@ -76,10 +76,6 @@ export default class MyItemsHolder {
 
     removeAllItems() {
         this.itemsArea.innerHTML = '';
-    }
-
-    displayMessage(message) {
-        this.messageArea.innerHTML = message;
     }
 
     displayConfirmationModal(button, item) {

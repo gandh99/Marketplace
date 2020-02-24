@@ -1,12 +1,13 @@
 const db = require('../db');
 
-module.exports.addNewItem = (itemImage, itemCategory, itemName, itemPrice, ownerId, done) => {
+module.exports.addNewItem = (itemImage, itemCategory, itemName, itemPrice, ownerId, ownerUsername, done) => {
     let data = { 
         item_image: itemImage, 
         item_category: itemCategory, 
         item_name: itemName,
         item_price: itemPrice, 
-        owner_id: ownerId
+        owner_id: ownerId,
+        owner_username: ownerUsername
     };
     let sql = 'INSERT INTO active_items SET ?';
     db.get().query(sql, data, (err, result) => {

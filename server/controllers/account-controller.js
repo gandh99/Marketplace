@@ -15,6 +15,7 @@ module.exports.addItem = (req, res, next) => {
             let username = user.tokenData.username;
             users.getUser(username, fullUser => {
                 itemData.userId = fullUser.user_id;
+                itemData.username = username;
                 resolve(itemData); // needs to be a string to resolve
             });
         });
@@ -47,7 +48,7 @@ module.exports.addItem = (req, res, next) => {
 
 function saveItemToDatabase(itemData, res) {
     // Save item image and data into the database
-    items.addNewItem(itemData.itemImage, itemData.itemCategory, itemData.itemName, itemData.itemPrice, itemData.userId, (result) => {
+    items.addNewItem(itemData.itemImage, itemData.itemCategory, itemData.itemName, itemData.itemPrice, itemData.userId, itemData.username, (result) => {
         res.status(200).send(result);
     });
 }
@@ -80,10 +81,12 @@ function getUserItems(userId) {
     })
 }
 
-module.exports.appendItemImages = (result) => {
+function appendItemImages(result) {
     // Iterate through the result, get the filenames for the images and convert them into base64
     return Promise.all(result.map(getImageOfSingleItem));
 }
+
+module.exports.appendItemImages = appendItemImages;
 
 function getImageOfSingleItem(item) {
     const appDir = path.dirname(require.main.filename);

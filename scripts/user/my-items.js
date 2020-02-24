@@ -16,12 +16,14 @@ function retrieveMyItems() {
     xhr.onload = () => {
         if (xhr.status == 200) {
             let itemArray = JSON.parse(xhr.response);
-            myItemsHolder = new MyItemsHolder(itemsArea, messageArea, itemArray);
+            myItemsHolder = new MyItemsHolder(itemsArea, itemArray);
             myItemsHolder.displayItems(itemArray);
         } else if (xhr.status == 403) {
-            let message = 'Please login to view your items';
-            displayMessage(message);
+            displayMessage('Please login to view your items');
             hideUtilityBar();
+        } else {
+            console.log(xhr.response)
+            displayMessage('Oops! An error occurred. Please try again later.');
         }
     };
     xhr.send();
@@ -46,6 +48,10 @@ export function deleteItem(item) {
 function hideUtilityBar() {
     const utilityBar = document.getElementsByClassName('utility-bar')[0];
     utilityBar.style.display = 'none';
+}
+
+export function displayMessage(message) {
+    messageArea.innerHTML = message;
 }
 
 // Implement search functionality 
