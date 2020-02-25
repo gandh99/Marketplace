@@ -24,7 +24,7 @@ export default class ConfirmationModal {
         var modal = document.getElementById("confirmation-modal-background");
 
         // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
+        var span = document.getElementsByClassName("confirmation-modal-close")[0];
 
         // When the user clicks on the button, open the modal
         modal.style.display = "block";

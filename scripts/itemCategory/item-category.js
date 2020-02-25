@@ -1,5 +1,6 @@
 import { itemCategoryUrl } from '../routes.js';
 import { getToken } from '../authentication/jwt.js';
+import ItemsHolder from './items-holder.js';
 
 export function loadItems(category) {
     getItemsFromServer(category)
@@ -25,54 +26,16 @@ function getItemsFromServer(category) {
 }
 
 function displayItems(itemArray) {
-    for (let item of itemArray) {
-        createItem(item);
-    }
-}
-
-function createItem(item) {
     const itemsArea = document.getElementsByClassName('items-area')[0];
-
-    // Create div
-    let itemContainer = document.createElement('div');
-    let itemCardImage = document.createElement('div');
-    let itemOwner = document.createElement('div');
-    let itemName = document.createElement('div');
-    let itemPrice = document.createElement('div');
-    let buyButton = document.createElement('div');
-
-    // Assign class
-    itemContainer.setAttribute('class', 'item-container');
-    itemCardImage.setAttribute('class', 'item-image');
-    itemOwner.setAttribute('class', 'item-owner');
-    itemName.setAttribute('class', 'item-name');
-    itemPrice.setAttribute('class', 'item-price');
-    buyButton.setAttribute('class', 'buy-button');
-
-    // Add the data
-    createItemImage(itemCardImage, item.item_image_base64);
-    itemOwner.innerHTML = item.owner_username;
-    itemName.innerHTML = item.item_name;
-    itemPrice.innerHTML = 'S$' + item.item_price;
-    buyButton.innerHTML = 'Buy';
-
-    // Append to itemsArea
-    itemContainer.appendChild(itemCardImage);
-    // itemContainer.appendChild(itemOwner);
-    itemContainer.appendChild(itemName);
-    itemContainer.appendChild(itemPrice);
-    itemContainer.appendChild(buyButton);
-    itemsArea.appendChild(itemContainer);
-}
-
-function createItemImage(itemCardImage, base64Image) {
-    let image = new Image();
-    image.src = base64Image;
-    image.style.width = '80%';
-    itemCardImage.appendChild(image);
+    let itemsHolder = new ItemsHolder(itemsArea, itemArray);
+    itemsHolder.displayItems(itemArray);
 }
 
 function displayMessage(message) {
     const messageArea = document.getElementsByClassName('message-area')[0];
     messageArea.innerHTML = message;
+}
+
+export function buyItem(item) {
+    console.log(item);
 }

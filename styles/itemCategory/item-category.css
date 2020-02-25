@@ -1,4 +1,50 @@
 @import url('/styles/styles.css');
+.utility-bar {
+    margin: 2rem 0.2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.utility-bar * {
+    font-size: 0.8rem;
+}
+
+.utility-bar>* {
+    margin: 0 0.8rem;
+}
+
+.modal-button {
+    background-color: var(--general-button-color-dark);
+    color: var(--primary-text-color);
+    padding: 0.5rem 3rem;
+    border-radius: 4px;
+}
+
+.search-container {
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px lightgray;
+}
+
+.search-container input {
+    width: 8rem;
+    height: 100%;
+    padding: 0 20px;
+    border: none;
+}
+
+.search-container button {
+    float: right;
+    height: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.searchButton img {
+    width: 20px;
+}
 
 .items-area {
     margin: 2rem;
@@ -20,7 +66,7 @@
     margin: 1rem auto;
 }
 
-.item-price {    
+.item-price {
     margin-top: 1rem;
     color: var(--price-color);
 }
@@ -45,5 +91,11 @@
     .items-area {
         grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
         margin: 0rem 2rem;
+    }
+    .search-container input {
+        width: 20rem;
+        height: 100%;
+        padding: 0 20px;
+        border: none;
     }
 }
