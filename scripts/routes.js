@@ -9,3 +9,4 @@ export const addItemUrl = host + '/account/add-item';
 export const getItemUrl = host + '/account/get-item';
 export const deleteItemUrl = host + '/account/delete-item';
 export const itemCategoryUrl = host + '/items/';
+export const buyItemUrl = host + '/items/buy';

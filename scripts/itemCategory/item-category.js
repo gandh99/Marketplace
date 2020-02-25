@@ -1,4 +1,4 @@
-import { itemCategoryUrl } from '../routes.js';
+import { itemCategoryUrl, buyItemUrl } from '../routes.js';
 import { getToken } from '../authentication/jwt.js';
 import ItemsHolder from './items-holder.js';
 
@@ -37,5 +37,21 @@ function displayMessage(message) {
 }
 
 export function buyItem(item) {
-    console.log(item);
+    const itemData = {
+        itemId: item.item_id
+    }
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', buyItemUrl);
+    xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
+    xhr.setRequestHeader('content-type', 'application/json');
+    xhr.onload = () => {
+        if (xhr.status == 200) {
+            console.log(xhr.response)
+            // location.reload();
+        } else {
+            console.log(xhr.status + '; Oops! Something went wrong. Please try again later.');
+        }
+    };
+    xhr.send(JSON.stringify(itemData));
 }

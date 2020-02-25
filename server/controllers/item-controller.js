@@ -16,3 +16,7 @@ function getItemsByCategory(req, res) {
         });
     })
 }
+
+module.exports.buyItem = (req, res, next) => {
+    res.status(200).send(req.body);
+}
