@@ -39,6 +39,7 @@ function createItem(item) {
     let itemOwner = document.createElement('div');
     let itemName = document.createElement('div');
     let itemPrice = document.createElement('div');
+    let buyButton = document.createElement('div');
 
     // Assign class
     itemContainer.setAttribute('class', 'item-container');
@@ -46,18 +47,21 @@ function createItem(item) {
     itemOwner.setAttribute('class', 'item-owner');
     itemName.setAttribute('class', 'item-name');
     itemPrice.setAttribute('class', 'item-price');
+    buyButton.setAttribute('class', 'buy-button');
 
     // Add the data
     createItemImage(itemCardImage, item.item_image_base64);
     itemOwner.innerHTML = item.owner_username;
     itemName.innerHTML = item.item_name;
-    itemPrice.innerHTML = item.item_price;
+    itemPrice.innerHTML = 'S$' + item.item_price;
+    buyButton.innerHTML = 'Buy';
 
     // Append to itemsArea
     itemContainer.appendChild(itemCardImage);
-    itemContainer.appendChild(itemOwner);
+    // itemContainer.appendChild(itemOwner);
     itemContainer.appendChild(itemName);
     itemContainer.appendChild(itemPrice);
+    itemContainer.appendChild(buyButton);
     itemsArea.appendChild(itemContainer);
 }
 

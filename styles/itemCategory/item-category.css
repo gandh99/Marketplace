@@ -1,0 +1,49 @@
+@import url('/styles/styles.css');
+
+.items-area {
+    margin: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    justify-items: center;
+}
+
+.item-container {
+    margin: 0.2rem;
+    text-align: center;
+}
+
+.item-image {
+    content: '';
+    background-size: cover;
+    width: 10rem;
+    height: 7rem;
+    margin: 1rem auto;
+}
+
+.item-price {    
+    margin-top: 1rem;
+    color: var(--price-color);
+}
+
+.buy-button {
+    background-color: var(--delete-button-color);
+    margin: 1rem auto;
+    padding: 0.5rem;
+    width: 70%;
+    color: var(--primary-text-color);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 700px) {
+    .utility-bar {
+        margin: 2rem;
+    }
+    .utility-bar>* {
+        margin: 0 2rem;
+    }
+    .items-area {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+        margin: 0rem 2rem;
+    }
+}
