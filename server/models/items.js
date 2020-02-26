@@ -42,6 +42,10 @@ module.exports.deleteItem = (itemId, done) => {
 
 module.exports.buyItem = (itemId, itemName, ownerUsername, buyerUsername, price, done) => {
     // Remove the item from active_items
+    let deleteSql = 'DELETE FROM active_items WHERE item_id = ?';
+    db.get().query(deleteSql, itemId, (err, result) => {
+        if (err) throw err;
+    })
 
     // Record the buy/sell transaction
     let transactionData = {

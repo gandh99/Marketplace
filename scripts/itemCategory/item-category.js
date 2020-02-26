@@ -50,8 +50,7 @@ export function buyItem(item) {
     xhr.setRequestHeader('content-type', 'application/json');
     xhr.onload = () => {
         if (xhr.status == 200) {
-            console.log(xhr.response)
-            // location.reload();
+            location.reload();
         } else {
             console.log(xhr.status + '; Oops! Something went wrong. Please try again later.');
         }
