@@ -39,3 +39,10 @@ module.exports.deleteItem = (itemId, done) => {
         done(result);
     })
 }
+
+module.exports.buyItem = (itemId, itemName, ownerUsername, buyerUsername, price, done) => {
+    // Remove the item from active_items
+
+    // Record the buy/sell transaction
+    
+}

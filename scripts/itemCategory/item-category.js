@@ -38,7 +38,10 @@ function displayMessage(message) {
 
 export function buyItem(item) {
     const itemData = {
-        itemId: item.item_id
+        itemId: item.item_id,
+        itemName: item.item_name,
+        ownerUsername: item.owner_username,
+        price: item.item_price
     }
 
     const xhr = new XMLHttpRequest();
