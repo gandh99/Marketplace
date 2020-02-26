@@ -44,5 +44,15 @@ module.exports.buyItem = (itemId, itemName, ownerUsername, buyerUsername, price,
     // Remove the item from active_items
 
     // Record the buy/sell transaction
-    
+    let transactionData = {
+        item_name: itemName,
+        buyer_username: buyerUsername,
+        seller_username: ownerUsername,
+        item_price: price
+    }
+    let transactionSql = 'INSERT INTO transacted_items SET ?';
+    db.get().query(transactionSql, transactionData, (err, result) => {
+        if (err) throw err;
+        done(result);
+    })
 }

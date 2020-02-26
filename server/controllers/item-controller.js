@@ -22,8 +22,7 @@ function getItemsByCategory(req, res) {
 module.exports.buyItem = (req, res, next) => {
     getBuyerUsername(req, res)
         .then(buyerUsername => executePurchase(req, res, buyerUsername))
-
-    // res.status(200).send(req.body);
+        .then(result => res.status(200).send('Successful purchase.'))
 }
 
 function executePurchase(req, res, buyerUsername) {
@@ -34,7 +33,7 @@ function executePurchase(req, res, buyerUsername) {
 
     return new Promise((resolve, reject) => {
         items.buyItem(itemId, itemName, ownerUsername, buyerUsername, price, function done(result) {
-            res.status(200).send(result);
+            resolve(result);
         });
     });
 }
