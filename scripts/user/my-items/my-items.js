@@ -1,5 +1,5 @@
-import { getItemUrl, deleteItemUrl } from '../routes.js';
-import { getToken } from '../authentication/jwt.js';
+import { getItemUrl, deleteItemUrl } from '../../routes.js';
+import { getToken } from '../../authentication/jwt.js';
 import MyItemsHolder from './my-items-holder.js';
 
 const itemsArea = document.getElementsByClassName('items-area')[0];

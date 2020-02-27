@@ -1,6 +1,6 @@
-import { getToken } from '../authentication/jwt.js'
-import { addItemUrl } from '../routes.js';
-import { showErrors, removeErrors } from '../components/input-error-display.js';
+import { getToken } from '../../authentication/jwt.js'
+import { addItemUrl } from '../../routes.js';
+import { showErrors, removeErrors } from '../../components/input-error-display.js';
 
 // Submit the item to be added on the server
 let addItemButton = document.getElementById('add-item-button');

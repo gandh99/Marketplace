@@ -1,4 +1,4 @@
-import ConfirmationModal from '../components/confirmation-modal.js';
+import ConfirmationModal from '../../components/confirmation-modal.js';
 import { deleteItem } from './my-items.js';
 import { displayMessage } from './my-items.js';
 
