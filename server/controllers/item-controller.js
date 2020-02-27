@@ -3,7 +3,7 @@ const users = require('../models/users');
 const accountController = require('./account-controller.js');
 const auth = require('./authenticate-controller.js');
 
-module.exports.getItem = (req, res, next) => {
+module.exports.getActiveItems = (req, res, next) => {
     getItemsByCategory(req, res)
         .then(accountController.appendItemImages)
         .then(result => res.status(200).send(result))
@@ -20,7 +20,7 @@ function getItemsByCategory(req, res) {
 }
 
 module.exports.buyItem = (req, res, next) => {
-    getBuyerUsername(req, res)
+    getUsername(req, res)   // Extract the username of the buyer (the person making the request)
         .then(buyerUsername => executePurchase(req, res, buyerUsername))
         .then(result => res.status(200).send('Successful purchase.'))
 }
@@ -38,15 +38,22 @@ function executePurchase(req, res, buyerUsername) {
     });
 }
 
-function getBuyerUsername(req, res) {
+function getUsername(req, res) {
     return new Promise((resolve, reject) => {
-        // Extract the username of the buyer (the person making the request)
         auth.authenticateToken(req, res, (nil, user) => {
             let username = user.tokenData.username;
             users.getUser(username, fullUser => {
-                let buyerUsername = fullUser.username;
-                resolve(buyerUsername);
+                let currentUsername = fullUser.username;
+                resolve(currentUsername);
             });
         });
     })
+}
+
+module.exports.getTransactedItems = (req, res) => {
+    getUsername(req, res)
+        .then(items.getTransactedItemsByUser)
+        .then(result => {
+            res.status(200).send(result);
+        })
 }

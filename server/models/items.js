@@ -60,3 +60,11 @@ module.exports.buyItem = (itemId, itemName, ownerUsername, buyerUsername, price,
         done(result);
     })
 }
+
+module.exports.getTransactedItemsByUser = (username) => {
+    let sql = 'SELECT * FROM transacted_items WHERE buyer_username = ? OR seller_username = ?';
+    db.get().query(sql, [username, username], (err, result) => {
+        if (err) throw err;
+        done(result);
+    })
+}
