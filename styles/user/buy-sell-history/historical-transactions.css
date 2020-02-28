@@ -1,0 +1,28 @@
+@import url('../../styles.css');
+
+.page-title {
+    text-align: center;
+    margin: 2rem;
+    font-weight: bold;
+}
+
+.transaction-table {
+    margin: 2rem auto;
+    border-spacing: 0;
+}
+
+th, td {
+    padding: 0.5rem 2rem;
+}
+
+th {
+    text-align: left;
+    background-color: var(--general-button-color);
+    color: var(--primary-text-color);
+    margin: 10rem;
+    font-weight: normal;
+}
+
+tr:nth-child(odd) {
+    background-color: rgba(211, 211, 211, 0.384);
+}
