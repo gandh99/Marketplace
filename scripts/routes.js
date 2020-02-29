@@ -8,5 +8,6 @@ export const logoutUrl = host + '/users/logout';
 export const addItemUrl = host + '/account/add-item';
 export const getItemUrl = host + '/account/get-item';
 export const deleteItemUrl = host + '/account/delete-item';
-export const itemCategoryUrl = host + '/items/';
+export const itemCategoryUrl = host + '/items/category/';    // needs to be appended with the specific category
 export const buyItemUrl = host + '/items/buy';
+export const historicalTransactionsUrl = host + '/items/history';

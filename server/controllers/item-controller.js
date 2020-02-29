@@ -50,10 +50,18 @@ function getUsername(req, res) {
     })
 }
 
-module.exports.getTransactedItems = (req, res) => {
+module.exports.getTransactedItems = (req, res, next) => {
     getUsername(req, res)
-        .then(items.getTransactedItemsByUser)
+        .then(getTransactedItemsFromDatabase)
         .then(result => {
             res.status(200).send(result);
         })
+}
+
+function getTransactedItemsFromDatabase(username) {
+    return new Promise((resolve, reject) => {
+        items.getTransactedItemsByUser(username, result => {
+            resolve(result);
+        })
+    })
 }
