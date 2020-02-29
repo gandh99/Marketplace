@@ -27,12 +27,13 @@ module.exports.buyItem = (req, res, next) => {
 
 function executePurchase(req, res, buyerUsername) {
     let itemId = req.body.itemId;
+    let itemCategory = req.body.itemCategory;
     let itemName = req.body.itemName;
     let ownerUsername = req.body.ownerUsername;
     let price = req.body.price;
 
     return new Promise((resolve, reject) => {
-        items.buyItem(itemId, itemName, ownerUsername, buyerUsername, price, function done(result) {
+        items.buyItem(itemId, itemCategory, itemName, ownerUsername, buyerUsername, price, function done(result) {
             resolve(result);
         });
     });

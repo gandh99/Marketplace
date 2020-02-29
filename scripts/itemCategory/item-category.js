@@ -39,6 +39,7 @@ function displayMessage(message) {
 export function buyItem(item) {
     const itemData = {
         itemId: item.item_id,
+        itemCategory: item.item_category,
         itemName: item.item_name,
         ownerUsername: item.owner_username,
         price: item.item_price

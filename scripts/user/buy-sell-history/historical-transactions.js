@@ -46,7 +46,7 @@ function addTransactionItem(transaction) {
 
     // Add data
     date.innerHTML = transaction.transaction_date.substring(0, 10); // We only want the date: YYYY-MM-DD
-    // category.innerHTML = transaction.transaction_date;
+    category.innerHTML = transaction.item_category;
     item.innerHTML = transaction.item_name;
     buyer.innerHTML = transaction.buyer_username;
     seller.innerHTML = transaction.seller_username;
@@ -60,8 +60,6 @@ function addTransactionItem(transaction) {
     tableRow.appendChild(seller);
     tableRow.appendChild(price);
     table.appendChild(tableRow);
-
-    console.log(transaction)
 }
 
 function displayMessage(message) {

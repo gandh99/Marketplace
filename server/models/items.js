@@ -40,7 +40,7 @@ module.exports.deleteItem = (itemId, done) => {
     })
 }
 
-module.exports.buyItem = (itemId, itemName, ownerUsername, buyerUsername, price, done) => {
+module.exports.buyItem = (itemId, itemCategory, itemName, ownerUsername, buyerUsername, price, done) => {
     // Remove the item from active_items
     let deleteSql = 'DELETE FROM active_items WHERE item_id = ?';
     db.get().query(deleteSql, itemId, (err, result) => {
@@ -50,6 +50,7 @@ module.exports.buyItem = (itemId, itemName, ownerUsername, buyerUsername, price,
     // Record the buy/sell transaction
     let transactionData = {
         item_name: itemName,
+        item_category: itemCategory,
         buyer_username: buyerUsername,
         seller_username: ownerUsername,
         item_price: price
