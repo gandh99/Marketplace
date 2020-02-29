@@ -5,7 +5,7 @@ populateTable();
 
 function populateTable() {
     getTransactions()
-        // .then(result => console.log(result))
+        .then(displayTransactionsInTable)
 }
 
 function getTransactions() {
@@ -15,10 +15,8 @@ function getTransactions() {
         xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
         xhr.onload = () => {
             if (xhr.status == 200) {
-                let transactions = xhr.response;
-                // let transactions = JSON.parse(xhr.response);
-                // resolve(xhr.response);
-                console.log(transactions)
+                let transactions = JSON.parse(xhr.response);
+                resolve(transactions);
             } else if (xhr.status == 403) {
                 displayMessage('Please login to view your historical transactions.');
             } else {
@@ -28,6 +26,42 @@ function getTransactions() {
         };
         xhr.send();
     })
+}
+
+function displayTransactionsInTable(transactions) {
+    for (let transaction of transactions) {
+        addTransactionItem(transaction);
+    }
+}
+
+function addTransactionItem(transaction) {
+    let table = document.getElementsByClassName('transaction-table')[0];
+    let tableRow = document.createElement('tr');
+    let date = document.createElement('td');
+    let category = document.createElement('td');
+    let item = document.createElement('td');
+    let buyer = document.createElement('td');
+    let seller = document.createElement('td');
+    let price = document.createElement('td');
+
+    // Add data
+    date.innerHTML = transaction.transaction_date.substring(0, 10); // We only want the date: YYYY-MM-DD
+    // category.innerHTML = transaction.transaction_date;
+    item.innerHTML = transaction.item_name;
+    buyer.innerHTML = transaction.buyer_username;
+    seller.innerHTML = transaction.seller_username;
+    price.innerHTML = transaction.item_price;
+
+    // Append to the tableRow, and then to the table itself
+    tableRow.appendChild(date);
+    tableRow.appendChild(category);
+    tableRow.appendChild(item);
+    tableRow.appendChild(buyer);
+    tableRow.appendChild(seller);
+    tableRow.appendChild(price);
+    table.appendChild(tableRow);
+
+    console.log(transaction)
 }
 
 function displayMessage(message) {
