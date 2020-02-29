@@ -18,7 +18,7 @@ function getTransactions() {
                 let transactions = JSON.parse(xhr.response);
                 resolve(transactions);
             } else if (xhr.status == 403) {
-                displayMessage('Please login to view your historical transactions.');
+                displayMessage('Please <a href="/html/authentication/login.html">login</a> to view your historical transactions.');
             } else {
                 console.log(xhr.response)
                 displayMessage('Oops! An error occurred. Please try again later.');
@@ -29,6 +29,11 @@ function getTransactions() {
 }
 
 function displayTransactionsInTable(transactions) {
+    // Show the table
+    let table = document.getElementsByClassName('transaction-table')[0];
+    table.style.display = 'visible';
+
+    // Add the transactions to the table
     for (let transaction of transactions) {
         addTransactionItem(transaction);
     }
@@ -63,6 +68,12 @@ function addTransactionItem(transaction) {
 }
 
 function displayMessage(message) {
+    hideTable();
     const messageArea = document.getElementsByClassName('message-area')[0];
     messageArea.innerHTML = message;
+}
+
+function hideTable() {
+    let table = document.getElementsByClassName('transaction-table')[0];
+    table.style.display = 'none';
 }
