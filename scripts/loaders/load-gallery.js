@@ -1,0 +1,1 @@
+$(".gallery-container").load("/html/home/gallery.html");
