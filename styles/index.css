@@ -10,8 +10,8 @@ a {
     color: black;
 }
 
-.gallery-container {
-    position: relative;
+.gallery-area {
+    margin: 2rem auto;
 }
 
 @media screen and (min-width: 700px) {

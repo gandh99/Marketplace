@@ -1,0 +1,50 @@
+@import url('/styles/styles.css');
+
+.gallery-container {
+    position: relative;
+    padding: 1rem 0;
+    box-shadow: 1px 1px 5px lightgray;
+}
+
+.gallery-title {
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: bold;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+}
+
+.gallery-nav-button {
+    font-size: 3rem;
+    position: absolute;
+    padding: 0 1rem;
+    top: 45%;
+    cursor: pointer;
+    z-index: 1;
+    height: 4rem;
+}
+
+.gallery-nav-button img {
+    height: 50%;
+}
+
+.right-nav-button {
+    right: 0;
+}
+
+.gallery-row {
+    margin: 1rem 3.5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.gallery-item {
+    margin: 0 0.5rem;
+}
+
+.gallery-item img {
+    height: 5rem;
+}
