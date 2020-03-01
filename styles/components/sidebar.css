@@ -71,13 +71,14 @@
     cursor: pointer;
 }
 
+.side-bar-options-item a {
+    text-decoration: none;
+    color: rgb(224, 224, 224);
+}
+
 .side-bar-options-item img {
     height: 1rem;
     margin: 0 0.5rem;
-}
-
-.side-bar-options-item:hover {
-    color: var(--primary-text-color);
 }
 
 @media screen and (min-width: 700px) {}
