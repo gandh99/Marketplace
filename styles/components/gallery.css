@@ -3,14 +3,14 @@
 .gallery-container {
     position: relative;
     padding: 1rem 0;
-    box-shadow: 1px 1px 5px lightgray;
+    /* box-shadow: 1px 1px 5px lightgray; */
 }
 
 .gallery-title {
     text-align: center;
     color: var(--primary-color);
     font-weight: bold;
-    margin: 1rem 0;
+    margin: 1rem 0 3rem;
     font-size: 1.5rem;
 }
 
@@ -20,8 +20,13 @@
     padding: 0 1rem;
     top: 45%;
     cursor: pointer;
-    z-index: 1;
+    /* z-index: 1; */
     height: 4rem;
+    opacity: 0.3;
+}
+
+.gallery-nav-button:hover {
+    height: 4.5rem;
 }
 
 .gallery-nav-button img {
@@ -39,6 +44,7 @@
     flex-wrap: nowrap;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    height: 7rem;
 }
 
 .gallery-item {
@@ -47,4 +53,8 @@
 
 .gallery-item img {
     height: 5rem;
+}
+
+.gallery-item img:hover {
+    height: 5.5rem;
 }
