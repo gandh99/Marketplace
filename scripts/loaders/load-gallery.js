@@ -1,1 +1,1 @@
-$(".gallery-container").load("/html/home/gallery.html");
+$(".gallery-container").load("/html/components/gallery.html");

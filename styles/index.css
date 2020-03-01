@@ -1,4 +1,3 @@
-@import url("home/gallery.css");
 @import url("home/category-area.css");
 
 body, html {
@@ -9,6 +8,10 @@ body, html {
 a {
     text-decoration: none;
     color: black;
+}
+
+.gallery-container {
+    position: relative;
 }
 
 @media screen and (min-width: 700px) {
