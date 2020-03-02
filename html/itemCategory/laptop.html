@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">  
     <link rel="stylesheet" href="../../styles/index.css">
     <link rel="stylesheet" href="../../styles/itemCategory/item-category.css">
     <title>Marketplace | Laptop</title>
 </head>
+
 <body>
     <div id="header-area"></div>
     <div id="sidebar-area"></div>
 
-    <div class="utility-bar">
-        <div class="utility-bar-item modal-button" id="add-item">Sort by</div>
+    <div class="item-category-utility-bar">
+        <div class="sort-dropdown">
+            <div class="sort-dropbtn">Sort by <i class="fa fa-caret-down"></i></div>
+            <div class="sort-dropdown-content">
+                <a href="#" class="sort-name">Popular</a>
+                <a href="#" class="sort-name">Price: Low to High</a>
+                <a href="#" class="sort-name">Price: High to Low</a>
+                <a href="#" class="sort-name">Newest</a>
+            </div>
+        </div>
+
         <div class="search-container">
             <input type="text" class="searchTerm" placeholder="Search...">
             <button type="submit" class="searchButton">
@@ -30,4 +42,5 @@
     <script src="../../scripts/loaders/load-sidebar.js" type=""></script>
     <script src="../../scripts/itemCategory/laptop.js" type="module"></script>
 </body>
+
 </html>
