@@ -2,6 +2,10 @@ import { itemCategoryUrl, buyItemUrl } from '../routes.js';
 import { getToken } from '../authentication/jwt.js';
 import ItemsHolder from './items-holder.js';
 
+// Stores and displays all the items
+let itemsHolder;
+
+// Category name supplied must match the name in the database
 export function loadItems(category) {
     getItemsFromServer(category)
         .then(itemArray => {
@@ -27,7 +31,7 @@ function getItemsFromServer(category) {
 
 function displayItems(itemArray) {
     const itemsArea = document.getElementsByClassName('items-area')[0];
-    let itemsHolder = new ItemsHolder(itemsArea, itemArray);
+    itemsHolder = new ItemsHolder(itemsArea, itemArray);
     itemsHolder.displayItems(itemArray);
 }
 
@@ -58,3 +62,10 @@ export function buyItem(item) {
     };
     xhr.send(JSON.stringify(itemData));
 }
+
+// Search functionality
+let searchTerm = document.getElementsByClassName('searchTerm')[0];
+searchTerm.addEventListener('keyup', () => {
+    let searchValue = searchTerm.value;
+    itemsHolder.filterBySearchValue(searchValue);
+});
