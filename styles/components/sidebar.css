@@ -48,6 +48,16 @@
     visibility: hidden;
 }
 
+.side-bar-options-header {
+}
+
+#side-bar-back-button {
+    width: 12%;
+    float: left;
+    padding: 0.2rem 0.3rem;
+    cursor: pointer;
+}
+
 .side-bar-options-logo {
     text-align: center;
     color: var(--primary-text-color);

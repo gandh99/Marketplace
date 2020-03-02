@@ -56,3 +56,9 @@ let hamburgerMenu = document.getElementById("nav-menu-container");
 hamburgerMenu.addEventListener("click", () => {
     openCloseNav(hamburgerMenu);
 })
+
+// Add close functionality to the back button in the sidebar
+let backButton = document.getElementById('side-bar-back-button');
+backButton.addEventListener('click', () => {
+    closeNav();
+})
