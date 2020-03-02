@@ -45,7 +45,7 @@ function validateInput(file, itemCategory, itemName, itemPrice) {
         errors.push('All fields must be filled in and the item must have an image uploaded.');
         return errors;
     }
-    const pattern = /^[\w&.\-_]+$/;
+    const pattern = /^[\w\d&.\-_]+$/;
     if (!itemName.match(pattern)) {
         errors.push('Item name has disallowed special characters.');
         return errors;

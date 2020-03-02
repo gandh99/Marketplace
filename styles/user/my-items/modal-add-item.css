@@ -1,4 +1,4 @@
-@import url('../user/my-items/modal-dropdown.css');
+@import url('./modal-dropdown.css');
 @import url('../components/input-error-display.css');
 
 .modal-content {
