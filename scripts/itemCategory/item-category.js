@@ -3,20 +3,30 @@ import { getToken } from '../authentication/jwt.js';
 import ItemsHolder from './items-holder.js';
 
 // Stores and displays all the items
-let itemsHolder;
+export let itemsHolder;
+
+// Tracks the current category
+let category;
 
 // Category name supplied must match the name in the database
-export function loadItems(category) {
-    getItemsFromServer(category)
+export function loadItems(categoryName) {
+    category = categoryName;
+    getItemsFromServer(null)
         .then(itemArray => {
             displayItems(itemArray);
         })
 }
 
-function getItemsFromServer(category) {
+export function getItemsFromServer(sortBy) {
+    // Set the endpoint
+    let apiEndpoint = itemCategoryUrl + category;
+    if (sortBy) {
+        apiEndpoint += '?sortBy=' + sortBy;
+    }
+
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', itemCategoryUrl + category);
+        xhr.open('GET', apiEndpoint);
         xhr.onload = () => {
             if (xhr.status == 200) {
                 let itemArray = xhr.response;
@@ -62,10 +72,3 @@ export function buyItem(item) {
     };
     xhr.send(JSON.stringify(itemData));
 }
-
-// Search functionality
-let searchTerm = document.getElementsByClassName('searchTerm')[0];
-searchTerm.addEventListener('keyup', () => {
-    let searchValue = searchTerm.value;
-    itemsHolder.filterBySearchValue(searchValue);
-});
