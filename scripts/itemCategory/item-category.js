@@ -17,7 +17,14 @@ export function loadItems(categoryName) {
         })
 }
 
-export function getItemsFromServer(sortBy) {
+export function sortItems(sortBy) {
+    getItemsFromServer(sortBy)
+        .then(itemArray => {
+            displayItems(itemArray);
+        })
+}
+
+function getItemsFromServer(sortBy) {
     // Set the endpoint
     let apiEndpoint = itemCategoryUrl + category;
     if (sortBy) {
@@ -29,7 +36,7 @@ export function getItemsFromServer(sortBy) {
         xhr.open('GET', apiEndpoint);
         xhr.onload = () => {
             if (xhr.status == 200) {
-                let itemArray = xhr.response;
+                let itemArray = xhr.response;console.log(itemArray)
                 resolve(JSON.parse(itemArray));
             } else {
                 displayMessage('Oops! Something went wrong. Please try again later.');

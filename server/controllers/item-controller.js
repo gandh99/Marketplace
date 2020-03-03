@@ -11,10 +11,10 @@ module.exports.getActiveItems = (req, res, next) => {
 
 function getItemsByCategory(req, res) {
     let category = req.params.category;
-    let sortBy = req.query.sortBy;
+    let sortOption = req.query.sortBy;
 
     return new Promise((resolve, reject) => {
-        items.getItemsByCategory(category, function done(result) {
+        items.getItemsByCategory(category, sortOption, function done(result) {
             resolve(result);
         });
     })

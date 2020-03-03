@@ -24,9 +24,16 @@ module.exports.getItemsByOwnerId = (ownerId, done) => {
     })
 }
 
-module.exports.getItemsByCategory = (category, done) => {
-    let sql = 'SELECT * FROM active_items WHERE item_category = ?';
-    db.get().query(sql, category, (err, result) => {
+module.exports.getItemsByCategory = (category, sortOption, done) => {
+    let sql = 'SELECT * FROM active_items WHERE item_category = "' + category + '"';
+
+    if (sortOption) {
+        let orderBy = sortOption.split('-')[0];
+        let order = sortOption.split('-')[1];   // ASC or DESC
+        sql += ' ORDER BY ' + orderBy + ' ' + order;
+    }
+
+    db.get().query(sql, (err, result) => {
         if (err) throw err;
         done(result);
     })
