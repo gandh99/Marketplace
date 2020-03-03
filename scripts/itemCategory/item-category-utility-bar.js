@@ -11,6 +11,7 @@ searchTerm.addEventListener('keyup', () => {
 let sortOptions = document.getElementsByClassName('sort-name');
 for (let option of sortOptions) {
     option.addEventListener('click', () => {
+        searchTerm.value = '';
         sortItems(option.id);
     })
 }
