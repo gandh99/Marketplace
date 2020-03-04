@@ -19,7 +19,7 @@ function retrieveMyItems() {
             myItemsHolder = new MyItemsHolder(itemsArea, itemArray);
             myItemsHolder.displayItems(itemArray);
         } else if (xhr.status == 403) {
-            displayMessage('Please login to view your items');
+            displayMessage('Please <a href="/html/authentication/login.html">login</a> to view your items');
             hideUtilityBar();
         } else {
             console.log(xhr.response)

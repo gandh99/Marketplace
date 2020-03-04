@@ -75,6 +75,7 @@ export function buyItem(item) {
             location.reload();
         } else {
             console.log(xhr.status + '; Oops! Something went wrong. Please try again later.');
+            window.location.href = '/html/authentication/login.html';
         }
     };
     xhr.send(JSON.stringify(itemData));
