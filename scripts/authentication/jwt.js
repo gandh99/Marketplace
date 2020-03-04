@@ -1,4 +1,5 @@
-export function saveToken(tokenData) {
+export function saveTokens(tokenData) {
+    tokenData = JSON.parse(tokenData);
     sessionStorage.setItem('accessToken', tokenData.accessToken);
     sessionStorage.setItem('refreshToken', tokenData.refreshToken);
 }
