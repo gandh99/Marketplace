@@ -1,11 +1,12 @@
-export function saveToken(token) {
-    sessionStorage.setItem('token', token);
+export function saveToken(tokenData) {
+    sessionStorage.setItem('accessToken', tokenData.accessToken);
+    sessionStorage.setItem('refreshToken', tokenData.refreshToken);
 }
 
 export function getToken() {
-    return sessionStorage.getItem('token');
+    return sessionStorage.getItem('accessToken');
 }
 
 export function destroyToken() {
-    sessionStorage.removeItem('token')
+    sessionStorage.removeItem('accessToken');
 }

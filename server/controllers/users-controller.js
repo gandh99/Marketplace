@@ -13,7 +13,8 @@ module.exports.login = (req, res, done) => {
                 username: user.username
             }
             const accessToken = jwt.sign({ tokenData }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '0.5h' });
-            res.status(200).send(accessToken);
+            const refreshToken = jwt.sign({ tokenData }, process.env.REFRESH_TOKEN_SECRET);
+            res.status(200).send({ accessToken: accessToken, refreshToken: refreshToken });
         }
     })(req, res, done);
 };
