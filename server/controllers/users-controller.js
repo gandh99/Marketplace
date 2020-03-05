@@ -14,10 +14,10 @@ module.exports.login = (req, res, done) => {
             let tokenData = {
                 username: user.username
             }
-            const accessToken = jwt.sign({ tokenData }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '0.5h' });
+            const accessToken = jwt.sign({ tokenData }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10s' });
             const refreshToken = jwt.sign({ tokenData }, process.env.REFRESH_TOKEN_SECRET);
             refreshTokens.push(refreshToken);
-            res.status(200).send({ accessToken: accessToken, refreshToken: refreshToken });
+            res.status(200).send({ accessToken: accessToken, refreshToken: refreshToken, token:tokenData });
         }
     })(req, res, done);
 };
@@ -37,13 +37,15 @@ module.exports.token = (req, res) => {
     const refreshToken = req.body.refreshToken;
     if (!refreshToken) {
         res.status(401).send();
+        return;
     }
     if (!refreshTokens.includes(refreshToken)) {
         res.status(403).send();
+        return;
     }
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
         if (err) throw err;
-        const accessToken = jwt.sign({ name: user.tokenData }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '0.5h' });
-        res.json({ accessToken: accessToken});
+        const accessToken = jwt.sign({ username: user.tokenData.username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '0.5h' });
+        res.status(200).send({ accessToken: accessToken });
     })
 }

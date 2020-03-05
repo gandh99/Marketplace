@@ -1,10 +1,11 @@
 import { getItemUrl, deleteItemUrl } from '../../routes.js';
-import { getToken } from '../../authentication/jwt.js';
+import { getToken, refreshToken } from '../../authentication/jwt.js';
 import MyItemsHolder from './my-items-holder.js';
 
 const itemsArea = document.getElementsByClassName('items-area')[0];
 const messageArea = document.getElementsByClassName('message-area')[0];
 let myItemsHolder;
+let hasRefreshed = false;
 
 retrieveMyItems();
 
@@ -18,9 +19,15 @@ function retrieveMyItems() {
             let itemArray = JSON.parse(xhr.response);
             myItemsHolder = new MyItemsHolder(itemsArea, itemArray);
             myItemsHolder.displayItems(itemArray);
-        } else if (xhr.status == 403) {
-            displayMessage('Please <a href="/html/authentication/login.html">login</a> to view your items');
-            hideUtilityBar();
+        } else if (xhr.status == 401 || xhr.status == 403) {
+            if (!hasRefreshed) {
+                hasRefreshed = true;
+                refreshToken(retrieveMyItems);
+            } else {console.log(xhr.response)
+                displayMessage('Please <a href="/html/authentication/login.html">login</a> to view your items');
+                hideUtilityBar();
+                hasRefreshed = false;
+            }
         } else {
             console.log(xhr.response)
             displayMessage('Oops! An error occurred. Please try again later.');
