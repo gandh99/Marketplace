@@ -9,7 +9,6 @@ serveAccountMenuOptions();
 function serveAccountMenuOptions() {
     sendInputData(getToken())
         .then(response => {
-            console.log(response)
             if (response.status == 200) {
                 sessionStorage.setItem('username', response.data);
                 $("#account-menu-area").load("/html/components/account-menu-user.html");
@@ -21,6 +20,7 @@ function serveAccountMenuOptions() {
         });
 }
 
+// Pings the server to check if current user is authenticated. Receives username in response if true.
 function sendInputData(token) {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
@@ -34,8 +34,10 @@ function sendInputData(token) {
             } else {
                 if (!hasRefreshed) {
                     refreshToken(serveAccountMenuOptions);
+                    hasRefreshed = true;
                 } else {
                     hasRefreshed = false;
+                    $("#account-menu-area").load("/html/components/account-menu-guest.html");
                 }
             }
         };

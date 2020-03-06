@@ -1,8 +1,8 @@
-import { destroyToken } from './jwt.js';
+import { destroyTokens } from './jwt.js';
 
 let logoutButton = document.getElementById('logout');
 logoutButton.addEventListener('click', () => {
-    destroyToken();
+    destroyTokens();
     removeUsername();
     window.location.href = '/index.html';
 });

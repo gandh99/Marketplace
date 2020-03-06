@@ -18,11 +18,16 @@ function getRefreshToken() {
     return sessionStorage.getItem('refreshToken');
 }
 
-export function destroyToken() {
+export function destroyTokens() {
     sessionStorage.removeItem('accessToken');
+    sessionStorage.removeItem('refreshToken');
 }
 
 export function refreshToken(done) {
+    if (!getRefreshToken()) {
+        done();
+        return;
+    }
     const xhr = new XMLHttpRequest();
     xhr.open('POST', tokenUrl);
     xhr.setRequestHeader('content-type', 'application/json');
