@@ -1,5 +1,7 @@
 import { historicalTransactionsUrl } from '../../routes.js';
-import { getToken } from '../../authentication/jwt.js';
+import { getToken, refreshToken } from '../../authentication/jwt.js';
+
+let hasRefreshed = false;
 
 populateTable();
 
@@ -17,8 +19,14 @@ function getTransactions() {
             if (xhr.status == 200) {
                 let transactions = JSON.parse(xhr.response);
                 resolve(transactions);
-            } else if (xhr.status == 403) {
-                displayMessage('Please <a href="/html/authentication/login.html">login</a> to view your historical transactions.');
+                hasRefreshed = true;
+            } else if (xhr.status == 401 || xhr.status == 403) {
+                if (!hasRefreshed) {
+                    refreshToken(populateTable);
+                } else {
+                    displayMessage('Please <a href="/html/authentication/login.html">login</a> to view your historical transactions.');
+                    hasRefreshed = false;
+                }
             } else {
                 console.log(xhr.response)
                 displayMessage('Oops! An error occurred. Please try again later.');

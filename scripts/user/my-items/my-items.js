@@ -15,7 +15,6 @@ function retrieveMyItems() {
     xhr.open('GET', getItemUrl);
     xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
     xhr.onload = () => {
-        // console.log(xhr.status + '; ' + xhr.response)
         if (xhr.status == 200) {
             let itemArray = JSON.parse(xhr.response);
             myItemsHolder = new MyItemsHolder(itemsArea, itemArray);
