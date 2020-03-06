@@ -15,15 +15,16 @@ function retrieveMyItems() {
     xhr.open('GET', getItemUrl);
     xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
     xhr.onload = () => {
+        // console.log(xhr.status + '; ' + xhr.response)
         if (xhr.status == 200) {
             let itemArray = JSON.parse(xhr.response);
             myItemsHolder = new MyItemsHolder(itemsArea, itemArray);
             myItemsHolder.displayItems(itemArray);
+            hasRefreshed = true;
         } else if (xhr.status == 401 || xhr.status == 403) {
             if (!hasRefreshed) {
-                hasRefreshed = true;
                 refreshToken(retrieveMyItems);
-            } else {console.log(xhr.response)
+            } else {
                 displayMessage('Please <a href="/html/authentication/login.html">login</a> to view your items');
                 hideUtilityBar();
                 hasRefreshed = false;

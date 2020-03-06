@@ -14,7 +14,7 @@ module.exports.login = (req, res, done) => {
             let tokenData = {
                 username: user.username
             }
-            const accessToken = jwt.sign({ tokenData }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10s' });
+            const accessToken = jwt.sign({ tokenData }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '5s' });
             const refreshToken = jwt.sign({ tokenData }, process.env.REFRESH_TOKEN_SECRET);
             refreshTokens.push(refreshToken);
             res.status(200).send({ accessToken: accessToken, refreshToken: refreshToken, token:tokenData });
@@ -33,6 +33,7 @@ module.exports.register = (req, res) => {
     });
 };
 
+// Accepts a refresh token and uses it to generate and return a new access token
 module.exports.token = (req, res) => {
     const refreshToken = req.body.refreshToken;
     if (!refreshToken) {
@@ -45,7 +46,10 @@ module.exports.token = (req, res) => {
     }
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
         if (err) throw err;
-        const accessToken = jwt.sign({ username: user.tokenData.username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '0.5h' });
+        let tokenData = {
+            username: user.tokenData.username
+        }
+        const accessToken = jwt.sign({ tokenData }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '5s' });
         res.status(200).send({ accessToken: accessToken });
     })
 }

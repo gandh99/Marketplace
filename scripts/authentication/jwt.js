@@ -26,8 +26,8 @@ export function refreshToken(done) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', tokenUrl);
     xhr.setRequestHeader('content-type', 'application/json');
-    xhr.onload = () => {console.log(xhr.response)
-        saveAccessToken(xhr.response);
+    xhr.onload = () => {
+        saveAccessToken(JSON.parse(xhr.response));
         done();
     };
     xhr.send(JSON.stringify({ refreshToken: getRefreshToken() }));
