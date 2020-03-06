@@ -1,5 +1,5 @@
 import { itemCategoryUrl, buyItemUrl } from '../routes.js';
-import { getToken } from '../authentication/jwt.js';
+import { getToken, refreshToken } from '../authentication/jwt.js';
 import ItemsHolder from './items-holder.js';
 
 // Stores and displays all the items
@@ -36,7 +36,7 @@ function getItemsFromServer(sortBy) {
         xhr.open('GET', apiEndpoint);
         xhr.onload = () => {
             if (xhr.status == 200) {
-                let itemArray = xhr.response;console.log(itemArray)
+                let itemArray = xhr.response; console.log(itemArray)
                 resolve(JSON.parse(itemArray));
             } else {
                 displayMessage('Oops! Something went wrong. Please try again later.');
@@ -57,6 +57,7 @@ function displayMessage(message) {
     messageArea.innerHTML = message;
 }
 
+let hasRefreshed = false;
 export function buyItem(item) {
     const itemData = {
         itemId: item.item_id,
@@ -73,9 +74,15 @@ export function buyItem(item) {
     xhr.onload = () => {
         if (xhr.status == 200) {
             location.reload();
+            hasRefreshed = true;
         } else {
-            console.log(xhr.status + '; Oops! Something went wrong. Please try again later.');
-            window.location.href = '/html/authentication/login.html';
+            if (!hasRefreshed) {
+                refreshToken(function() { buyItem(item) });
+            } else {
+                console.log(xhr.status + '; Oops! Something went wrong. Please try again later.');
+                window.location.href = '/html/authentication/login.html';
+                hasRefreshed = false;
+            }
         }
     };
     xhr.send(JSON.stringify(itemData));
