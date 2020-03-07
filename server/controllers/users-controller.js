@@ -14,7 +14,7 @@ module.exports.login = (req, res, done) => {
             let tokenData = {
                 username: user.username
             }
-            const accessToken = jwt.sign({ tokenData }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '5s' });
+            const accessToken = jwt.sign({ tokenData }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
             const refreshToken = jwt.sign({ tokenData }, process.env.REFRESH_TOKEN_SECRET);
             refreshTokens.push(refreshToken);
             res.status(200).send({ accessToken: accessToken, refreshToken: refreshToken, token:tokenData });
@@ -49,7 +49,7 @@ module.exports.token = (req, res) => {
         let tokenData = {
             username: user.tokenData.username
         }
-        const accessToken = jwt.sign({ tokenData }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '5s' });
+        const accessToken = jwt.sign({ tokenData }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
         res.status(200).send({ accessToken: accessToken });
     })
 }
