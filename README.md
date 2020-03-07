@@ -12,7 +12,8 @@ A simple e-commerce website for users to buy and sell their products.
   - MySQL for database storage of user and item data
   - Bcrypt for salting and hashing user passwords
   - PassportJS for handling user authentication
-  - Javascript Web Token (JWT) for exchanging and refreshing access tokens
+  - Javascript Web Token (JWT) for handling access and refresh tokens
+  - Redis for storing refresh tokens in a cache
   - Formidable for receiving forms comprising images and JSON objects
 
 ## Screenshots
