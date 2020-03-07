@@ -2,8 +2,11 @@ require('dotenv').config();
 const sql = require('../models/users');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const redis = require('redis');
 
-let refreshTokens = [];
+// Start Redis client
+const REDIS_PORT = process.env.PORT || 6379;
+const redisClient = redis.createClient(REDIS_PORT);
 
 module.exports.login = (req, res, done) => {
     passport.authenticate('local', (err, user, info) => {
@@ -14,9 +17,14 @@ module.exports.login = (req, res, done) => {
             let tokenData = {
                 username: user.username
             }
+            // Create the access token and refresh token
             const accessToken = jwt.sign({ tokenData }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
             const refreshToken = jwt.sign({ tokenData }, process.env.REFRESH_TOKEN_SECRET);
-            refreshTokens.push(refreshToken);
+
+            // Store the refresh token in Redis cache
+            redisClient.set(user.username, refreshToken);
+
+            // Send the 2 tokens back
             res.status(200).send({ accessToken: accessToken, refreshToken: refreshToken, token:tokenData });
         }
     })(req, res, done);
@@ -37,11 +45,11 @@ module.exports.register = (req, res) => {
 module.exports.token = (req, res) => {
     const refreshToken = req.body.refreshToken;
     if (!refreshToken) {
-        res.status(401).send();
+        res.status(400).send('Missing refresh token.');
         return;
     }
-    if (!refreshTokens.includes(refreshToken)) {
-        res.status(403).send();
+    if (!redisClient.get(req.body.username)) {
+        res.sendStatus(401);
         return;
     }
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {

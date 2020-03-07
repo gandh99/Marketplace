@@ -18,6 +18,10 @@ function getRefreshToken() {
     return sessionStorage.getItem('refreshToken');
 }
 
+function getUsername() {
+    return sessionStorage.getItem('username');
+}
+
 export function destroyTokens() {
     sessionStorage.removeItem('accessToken');
     sessionStorage.removeItem('refreshToken');
@@ -31,9 +35,9 @@ export function refreshToken(done) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', tokenUrl);
     xhr.setRequestHeader('content-type', 'application/json');
-    xhr.onload = () => {
+    xhr.onload = () => {console.log(xhr.response)
         saveAccessToken(JSON.parse(xhr.response));
         done();
     };
-    xhr.send(JSON.stringify({ refreshToken: getRefreshToken() }));
+    xhr.send(JSON.stringify({ username: getUsername(), refreshToken: getRefreshToken() }));
 }
